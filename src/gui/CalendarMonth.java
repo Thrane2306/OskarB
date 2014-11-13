@@ -3,14 +3,13 @@ package gui;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.table.*;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
 public class CalendarMonth{
     static JLabel lblMonth, lblYear;
-    static JButton btnPrev, btnNext, btnMonth;
+    static JButton btnPrev, btnNext;
     static JTable tblCalendar;
     static JComboBox cmbYear;
     static JFrame frmMain;
@@ -41,12 +40,13 @@ public class CalendarMonth{
         cmbYear = new JComboBox();
         btnPrev = new JButton ("&lt;&lt;");
         btnNext = new JButton ("&gt;&gt;");
-        btnMonth = new JButton ("Month");
         mtblCalendar = new DefaultTableModel(){public boolean isCellEditable(int rowIndex, int mColIndex){return false;}};
         tblCalendar = new JTable(mtblCalendar);
         stblCalendar = new JScrollPane(tblCalendar);
         pnlCalendar = new JPanel(null);
-
+        
+        //Set border
+        pnlCalendar.setBorder(BorderFactory.createTitledBorder("Calendar"));
         
         //Register action listeners
         btnPrev.addActionListener(new btnPrev_Action());
@@ -60,25 +60,16 @@ public class CalendarMonth{
         pnlCalendar.add(cmbYear);
         pnlCalendar.add(btnPrev);
         pnlCalendar.add(btnNext);
-        pnlCalendar.add(btnMonth);
         pnlCalendar.add(stblCalendar);
         
         //Set bounds
-        pnlCalendar.setBounds(0, 0, 1225, 620);
-        lblMonth.setBounds(160-lblMonth.getPreferredSize().width/2, 250, 100, 25);
-        lblYear.setBounds(1030, 25, 80, 20); //Skift år placering
-        cmbYear.setBounds(1115, 25, 80, 20); //Årstalsvælger placering
-        btnPrev.setBounds(269, 25, 50, 25); //Måned-tilbage placering
-        btnNext.setBounds(490, 25, 50, 25); //Måned-frem placering
-        btnMonth.setBounds(50, 160, 170, 50);
-        stblCalendar.setBounds(270, 50, 925, 501);
-        
-        //Button colour
-        btnMonth.setBackground(Color.yellow);
-        // these next two lines do the magic..
-        btnMonth.setContentAreaFilled(false);
-        btnMonth.setOpaque(true);
-        
+        pnlCalendar.setBounds(250, 10, 950, 560);
+        lblMonth.setBounds(160-lblMonth.getPreferredSize().width/2, 25, 100, 25);
+        lblYear.setBounds(700, 25, 80, 20); //Skift år placering
+        cmbYear.setBounds(850, 25, 80, 20); //Årstalsvælger placering
+        btnPrev.setBounds(10, 25, 50, 25); //Måned-tilbage placering
+        btnNext.setBounds(270, 25, 50, 25); //Måned-frem placering
+        stblCalendar.setBounds(10, 50, 925, 500);
         
         //Make frame visible
         frmMain.setResizable(true);
@@ -110,7 +101,7 @@ public class CalendarMonth{
         tblCalendar.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         //Set row/column count
-        tblCalendar.setRowHeight(79);
+        tblCalendar.setRowHeight(78);
         mtblCalendar.setColumnCount(7);
         mtblCalendar.setRowCount(6);
         
@@ -134,7 +125,7 @@ public class CalendarMonth{
         if (month == 0 && year <= realYear-10){btnPrev.setEnabled(false);} //Too early
         if (month == 11 && year >= realYear+100){btnNext.setEnabled(false);} //Too late
         lblMonth.setText(months[month]); //Refresh the month label (at the top)
-        lblMonth.setBounds(400-lblMonth.getPreferredSize().width/2, 25, 180, 25); //Re-align label with calendar
+        lblMonth.setBounds(160-lblMonth.getPreferredSize().width/2, 25, 180, 25); //Re-align label with calendar
         cmbYear.setSelectedItem(String.valueOf(year)); //Select the correct year in the combo box
         
         //Clear table
