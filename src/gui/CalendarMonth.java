@@ -65,10 +65,10 @@ public class CalendarMonth{
         //Set bounds
         pnlCalendar.setBounds(250, 10, 950, 560);
         lblMonth.setBounds(160-lblMonth.getPreferredSize().width/2, 25, 100, 25);
-        lblYear.setBounds(10, 305, 80, 20);
-        cmbYear.setBounds(230, 305, 80, 20);
-        btnPrev.setBounds(375, 25, 50, 25);
-        btnNext.setBounds(575, 25, 50, 25);
+        lblYear.setBounds(700, 25, 80, 20); //Skift år placering
+        cmbYear.setBounds(850, 25, 80, 20); //Årstalsvælger placering
+        btnPrev.setBounds(10, 25, 50, 25); //Måned-tilbage placering
+        btnNext.setBounds(270, 25, 50, 25); //Måned-frem placering
         stblCalendar.setBounds(10, 50, 925, 500);
         
         //Make frame visible
@@ -101,7 +101,7 @@ public class CalendarMonth{
         tblCalendar.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         //Set row/column count
-        tblCalendar.setRowHeight(38);
+        tblCalendar.setRowHeight(78);
         mtblCalendar.setColumnCount(7);
         mtblCalendar.setRowCount(6);
         
