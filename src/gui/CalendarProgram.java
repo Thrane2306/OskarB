@@ -22,6 +22,7 @@ public class CalendarProgram {
 	static JScrollPane stblCalendar; //the scrollpane
 	static JPanel pnlCalendar;
 	static int realYear, realMonth, realDay, currentYear, currentMonth;
+	private static JLabel lblQuoteOfThe;
 	
 	public static void main (String args[]){
 		//look and feel
@@ -33,7 +34,7 @@ public class CalendarProgram {
 		
 		//Prepare frame
 		frmMain = new JFrame ("CBS Calendar"); //create frame
-		frmMain.setSize(330,375); //size of frame
+		frmMain.setSize(1207,940); //size of JFrame
 		pane = frmMain.getContentPane(); //get content pane
 		pane.setLayout(null); //apply null layout
 		frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,7 +45,7 @@ public class CalendarProgram {
 		lblYear = new JLabel ("Change year:"); //Change year label, only text
 		cmbYear = new JComboBox(); //change year combo box
 		btnPrev = new JButton("<<"); //Button to change to previous month
-		btnNext = new JButton (">>"); //Button to change to next month
+		btnNext = new JButton (">>");
 		mtblCalendar = new DefaultTableModel(){
 			public boolean isCellEditable(int rowIndex, int mColIndex){
 				return false;}};
@@ -69,15 +70,14 @@ public class CalendarProgram {
 		pnlCalendar.add(btnNext);
 		pnlCalendar.add(stblCalendar);
 		
-		//set bounds
-		pnlCalendar.setBounds(0, 0, 320, 335);
-		lblMonth.setBounds(160-lblMonth.getPreferredSize().width/2, 25, 100, 25);
-		lblYear.setBounds(10, 305, 80, 20);
-		cmbYear.setBounds(230, 305, 70, 20);
-		btnPrev.setBounds(10, 25, 50, 25);
-		btnNext.setBounds(260, 25, 50, 25);
-		stblCalendar.setBounds(10, 50, 300, 250);
-		
+		//set bounds for calendar
+		pnlCalendar.setBounds(242, 49, 959, 856); //set panel bounds
+		lblMonth.setBounds(700, 20, 100, 25);
+		lblYear.setBounds(770, 823, 80, 20); //"Change year:" placement
+		cmbYear.setBounds(877, 823, 70, 20); //combo box placement
+		btnPrev.setBounds(650, 20, 50, 25); //Previous month button
+		btnNext.setBounds(897, 20, 50, 25); //Next month button
+		stblCalendar.setBounds(12, 50, 935, 760);
 		//Make frame visible
 		frmMain.setResizable(false);
 		frmMain.setVisible(true);
@@ -91,7 +91,7 @@ public class CalendarProgram {
 		currentYear = realYear;
 		
 		//Add headers
-		String[] headers = {"sun", "mon", "tue", "wed", "thu", "Fri", "sat"}; //all headers
+		String[] headers = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"}; //all headers
 		for (int i=0; i<7; i++){
 			mtblCalendar.addColumn(headers[i]);
 		}
@@ -109,7 +109,33 @@ public class CalendarProgram {
 		tblCalendar.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		//set row/column count
-		tblCalendar.setRowHeight(38);
+		tblCalendar.setRowHeight(120);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(12, 59, 232, 800);
+		frmMain.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JButton btnNewButton = new JButton("M\u00E5nedsvisning");
+		btnNewButton.setBounds(0, 45, 220, 66);
+		panel.add(btnNewButton);
+		
+		JButton btnDagsvisning = new JButton("Dagsvisning");
+		btnDagsvisning.setBounds(0, 245, 220, 66);
+		panel.add(btnDagsvisning);
+		
+		JButton btnIndstillinger = new JButton("Indstillinger");
+		btnIndstillinger.setBounds(0, 445, 220, 66);
+		panel.add(btnIndstillinger);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(12, 13, 1189, 31);
+		frmMain.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+		
+		lblQuoteOfThe = new JLabel("Quote of the day:");
+		lblQuoteOfThe.setBounds(0, 0, 121, 29);
+		panel_1.add(lblQuoteOfThe);
 		mtblCalendar.setColumnCount(7);
 		mtblCalendar.setRowCount(6);
 		
@@ -137,7 +163,7 @@ public class CalendarProgram {
 		if (month == 11 && year >= realYear+100){
 			btnNext.setEnabled(false);} //too late
 		lblMonth.setText(months[month]); //Refresh the month label at the top
-		lblMonth.setBounds(160-lblMonth.getPreferredSize().width/2, 25, 180, 25); // re-align label with calendar
+		lblMonth.setBounds(800-lblMonth.getPreferredSize().width/2, 20, 180, 25); // re-align label with calendar
 		cmbYear.setSelectedItem(String.valueOf(year)); //select the correct year in the combo box
 		
 		//Clear table
