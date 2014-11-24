@@ -20,6 +20,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.JCheckBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBoxMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CalendarLogin extends JFrame {
 
@@ -71,6 +73,10 @@ public class CalendarLogin extends JFrame {
 		panel.add(passwordField);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnLogin.setBounds(203, 195, 89, 23);
 		panel.add(btnLogin);
 		
