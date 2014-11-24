@@ -8,9 +8,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class CalendarMonth{
+public class CalendarWeek{
     static JLabel lblMonth, lblYear;
-    static JButton btnPrev, btnNext, btnMonth, btnWeek, btnSetting;
+    static JButton btnPrev, btnNext, btnMonth;
     static JTable tblCalendar;
     static JComboBox cmbYear;
     static JFrame frmMain;
@@ -37,13 +37,11 @@ public class CalendarMonth{
         
         //Create controls
         lblMonth = new JLabel ("January");
-        lblYear = new JLabel ("Change year:");
+        lblYear = new JLabel ("Change month:");
         cmbYear = new JComboBox();
-        btnPrev = new JButton ("-");
-        btnNext = new JButton ("+");
+        btnPrev = new JButton ("&lt;&lt;");
+        btnNext = new JButton ("&gt;&gt;");
         btnMonth = new JButton ("Month");
-        btnWeek = new JButton ("Week");
-        btnSetting = new JButton ("Settings");
         mtblCalendar = new DefaultTableModel(){public boolean isCellEditable(int rowIndex, int mColIndex){return false;}};
         tblCalendar = new JTable(mtblCalendar);
         stblCalendar = new JScrollPane(tblCalendar);
@@ -63,8 +61,6 @@ public class CalendarMonth{
         pnlCalendar.add(btnPrev);
         pnlCalendar.add(btnNext);
         pnlCalendar.add(btnMonth);
-        pnlCalendar.add(btnWeek);
-        pnlCalendar.add(btnSetting);
         pnlCalendar.add(stblCalendar);
         
         //Set bounds
@@ -75,20 +71,13 @@ public class CalendarMonth{
         btnPrev.setBounds(269, 25, 50, 25); //Måned-tilbage placering
         btnNext.setBounds(490, 25, 50, 25); //Måned-frem placering
         btnMonth.setBounds(50, 160, 170, 50);
-        btnWeek.setBounds(50, 260, 170, 50);
-        btnSetting.setBounds(50, 360, 170, 50);
         stblCalendar.setBounds(270, 50, 925, 501);
         
         //Button colour
         btnMonth.setBackground(Color.yellow);
         btnMonth.setContentAreaFilled(false);
         btnMonth.setOpaque(true);
-        btnWeek.setBackground(Color.orange);
-        btnWeek.setContentAreaFilled(false);
-        btnWeek.setOpaque(true);
-        btnSetting.setBackground(Color.cyan);
-        btnSetting.setContentAreaFilled(false);
-        btnSetting.setOpaque(true);
+        
         
         //Make frame visible
         frmMain.setResizable(true);
@@ -103,7 +92,7 @@ public class CalendarMonth{
         currentYear = realYear;
         
         //Add headers
-        String[] headers = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"}; //All headers
+        String[] headers = {"Monday", "Tuesday", "Wed", "Thu", "Fri", "Sat", "Sun"}; //All headers
         for (int i=0; i<7; i++){
             mtblCalendar.addColumn(headers[i]);
         }
@@ -155,7 +144,7 @@ public class CalendarMonth{
         }
         
         //Get first day of month and number of days
-        GregorianCalendar cal = new GregorianCalendar(year, month, 7);
+        GregorianCalendar cal = new GregorianCalendar(year, month, 1);
         nod = cal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
         som = cal.get(GregorianCalendar.DAY_OF_WEEK);
         
@@ -185,7 +174,7 @@ public class CalendarMonth{
                 }
             }
             setBorder(null);
-            setForeground(Color.magenta);
+            setForeground(Color.black);
             return this;
         }
     }
