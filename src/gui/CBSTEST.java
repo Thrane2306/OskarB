@@ -21,7 +21,6 @@ public class CBSTEST {
 	overallID = "getCalendar";
 	cbsID = "anli12ae";
 	pik = "pik";
-	System.out.println(pik);
 	
 	try {
 		String answer = Switch.switchMethod(overallID, cbsID, pik);
@@ -34,10 +33,10 @@ public class CBSTEST {
         ArrayList<Event> calendarData = events.getEvents();
         
         for (Event event : calendarData) {
-			 info = event.getDescription();
-			 info2 = event.getType();
-			 info3 = event.getStart();
-			 info4 = event.getEnd();
+        	System.out.println(event.getDescription());
+        	System.out.println(event.getType());
+        	System.out.println(event.getStart());
+        	System.out.println(event.getEnd());
 			//System.out.println(event.getStart());
 		}
 	} catch (Exception e) {
