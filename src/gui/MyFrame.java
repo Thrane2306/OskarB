@@ -33,9 +33,10 @@ public class MyFrame extends JFrame {
 		
 		CalendarLogin calLog = new CalendarLogin();
 		
-		card.add("calLog", calLog);		
+		
 	
 		card.add("calPal", calPal);
+		card.add("calLog", calLog);		
 		GUI.show(card, "calLog");
 		getContentPane().add(card);
 		setVisible(true);
