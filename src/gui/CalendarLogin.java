@@ -1,93 +1,68 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import java.awt.Font;
+import javax.swing.border.LineBorder;
+
 import java.awt.Color;
-import javax.swing.border.MatteBorder;
-import java.awt.Window.Type;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
-import javax.swing.JCheckBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JCheckBoxMenuItem;
+import java.awt.Rectangle;
+
+import javax.swing.JLabel;
+
+import java.awt.Font;
 import java.awt.event.ActionListener;
+
+import javax.swing.JTextField;
+import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 
-public class CalendarLogin extends JFrame {
-
-	private JPanel contentPane;
+public class CalendarLogin extends JPanel{
 	private JTextField textField;
-	private JPasswordField passwordField;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CalendarLogin frame = new CalendarLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	private JTextField textField_1;
 	public CalendarLogin() {
-		setForeground(Color.LIGHT_GRAY);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 300);
-		contentPane = new JPanel();
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		setBounds(new Rectangle(0, 0, 1180, 900));
+		setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel.setBackground(Color.WHITE);
-		panel.setForeground(Color.BLACK);
-		contentPane.add(panel, BorderLayout.CENTER);
+		panel.setBounds(12, 13, 1168, 887);
+		add(panel);
 		panel.setLayout(null);
 		
+		JLabel lblLogin = new JLabel("LOGIN");
+		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		lblLogin.setBounds(528, 88, 150, 72);
+		panel.add(lblLogin);
+		
+		JLabel lblUsername = new JLabel("Username:");
+		lblUsername.setBounds(528, 224, 150, 16);
+		panel.add(lblUsername);
+		
 		textField = new JTextField();
-		textField.setBounds(188, 117, 122, 20);
+		textField.setBounds(528, 259, 150, 22);
 		panel.add(textField);
 		textField.setColumns(10);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(188, 164, 122, 20);
-		panel.add(passwordField);
+		JLabel lblPassword = new JLabel("Password:");
+		lblPassword.setBounds(528, 294, 150, 16);
+		panel.add(lblPassword);
 		
-		JButton btnLogin = new JButton("Login");
-		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		textField_1 = new JTextField();
+		textField_1.setBounds(528, 331, 150, 22);
+		panel.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JButton btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MyFrame.GUI.show(MyFrame.card, ("calPal"));
 			}
 		});
-		btnLogin.setBounds(203, 195, 89, 23);
-		panel.add(btnLogin);
+		btnOk.setBounds(550, 379, 97, 25);
+		panel.add(btnOk);
 		
-		JLabel lblUsername = new JLabel("Username:");
-		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblUsername.setBounds(188, 100, 74, 14);
-		panel.add(lblUsername);
 		
-		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblPassword.setBounds(188, 148, 89, 14);
-		panel.add(lblPassword);
+		
+		
+	
+		
+		}
 	}
-}
