@@ -28,6 +28,7 @@ public class CalendarTest extends JPanel {
 		private JTable table;
 
 		public CalendarTest() {
+			setBackground(Color.WHITE);
 			setLayout(null);
 			
 			// Get calendar set to current date and time
@@ -75,6 +76,7 @@ public class CalendarTest extends JPanel {
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Calendar c = Calendar.getInstance();
+					
 					c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 					
 					lblMan.setText(df.format(c.getTime()));
@@ -102,56 +104,57 @@ public class CalendarTest extends JPanel {
 				}
 			});
 			
-			btnNewButton.setBounds(187, 218, 64, 23);
+			btnNewButton.setBounds(244, 11, 64, 23);
 			add(btnNewButton);
 
 			
 			lblTir = new JLabel();
 			lblTir.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
-			lblTir.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+			lblTir.setBorder(new LineBorder(new Color(0, 0, 0)));
 			lblTir.setBackground(Color.WHITE);
-			lblTir.setBounds(37, 96, 60, 23);
+			lblTir.setBounds(10, 96, 80, 23);
 			add(lblTir);
 
 			lblOns = new JLabel();
 			lblOns.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 			lblOns.setBorder(new LineBorder(new Color(0, 0, 0)));
-			lblOns.setBounds(107, 96, 54, 23);
+			lblOns.setBounds(90, 96, 80, 23);
 			add(lblOns);
 
 			lblTor = new JLabel();
 			lblTor.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 			lblTor.setBorder(new LineBorder(new Color(0, 0, 0)));
-			lblTor.setBounds(177, 96, 54, 23);
+			lblTor.setBounds(170, 96, 80, 23);
 			add(lblTor);
 			
 			lblFre = new JLabel();
 			lblFre.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 			lblFre.setBorder(new LineBorder(new Color(0, 0, 0)));
-			lblFre.setBounds(244, 96, 54, 23);
+			lblFre.setBounds(250, 96, 80, 23);
 			add(lblFre);
 
 			lblLor = new JLabel();
 			lblLor.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 			lblLor.setBorder(new LineBorder(new Color(0, 0, 0)));
-			lblLor.setBounds(314, 96, 54, 23);
+			lblLor.setBounds(330, 96, 80, 23);
 			add(lblLor);
 
 			lblSon = new JLabel();
 			lblSon.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 			lblSon.setBorder(new LineBorder(new Color(0, 0, 0)));
-			lblSon.setBounds(384, 96, 54, 23);
+			lblSon.setBounds(410, 96, 80, 23);
 			add(lblSon);
 
 			lblMan = new JLabel();
 			lblMan.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 			lblMan.setBorder(new LineBorder(new Color(0, 0, 0)));
-			lblMan.setBounds(454, 96, 54, 23);
+			lblMan.setBounds(490, 96, 80, 23);
 			add(lblMan);
 			
 		
 			
 			JButton btnNewButton_1 = new JButton("Previous Week");
+			btnNewButton_1.setBackground(new Color(255, 255, 255));
 			btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					c.add(Calendar.DATE, -1);
@@ -176,12 +179,8 @@ public class CalendarTest extends JPanel {
 					lblMan.setText(df.format(c.getTime()));
 				}
 			});
-			btnNewButton_1.setBounds(53, 218, 124, 23);
+			btnNewButton_1.setBounds(10, 11, 124, 23);
 			add(btnNewButton_1);
-			
-			lblMonth = new JLabel("Month");
-			lblMonth.setBounds(83, 257, 50, 14);
-			add(lblMonth);
 			
 			JButton btnNextWeek = new JButton("Next Week");
 			btnNextWeek.addActionListener(new ActionListener() {
@@ -214,8 +213,78 @@ public class CalendarTest extends JPanel {
 					
 				}
 			});
-			btnNextWeek.setBounds(261, 218, 124, 23);
+			btnNextWeek.setBounds(459, 11, 124, 23);
 			add(btnNextWeek);
+			
+			JLabel lblTirsdag = new JLabel("");
+			lblTirsdag.setBorder(new LineBorder(new Color(0, 0, 0)));
+			lblTirsdag.setBounds(10, 130, 80, 303);
+			add(lblTirsdag);
+			
+			JLabel lblOnsdag = new JLabel("");
+			lblOnsdag.setBorder(new LineBorder(new Color(0, 0, 0)));
+			lblOnsdag.setBounds(90, 130, 80, 303);
+			add(lblOnsdag);
+			
+			JLabel lblTorsdag = new JLabel("");
+			lblTorsdag.setBorder(new LineBorder(new Color(0, 0, 0)));
+			lblTorsdag.setBounds(170, 130, 80, 303);
+			add(lblTorsdag);
+			
+			JLabel lblFredag = new JLabel("");
+			lblFredag.setBorder(new LineBorder(new Color(0, 0, 0)));
+			lblFredag.setBounds(250, 130, 80, 303);
+			add(lblFredag);
+			
+			JLabel lblLordag = new JLabel("");
+			lblLordag.setBorder(new LineBorder(new Color(0, 0, 0)));
+			lblLordag.setBounds(330, 130, 80, 303);
+			add(lblLordag);
+			
+			JLabel lblSondag = new JLabel("");
+			lblSondag.setBorder(new LineBorder(new Color(0, 0, 0)));
+			lblSondag.setBounds(410, 130, 80, 303);
+			add(lblSondag);
+			
+			JLabel lblMandag = new JLabel("");
+			lblMandag.setBorder(new LineBorder(new Color(0, 0, 0)));
+			lblMandag.setBounds(490, 130, 80, 303);
+			add(lblMandag);
+			
+			JLabel lblManLek1 = new JLabel("");
+			lblManLek1.setOpaque(true);
+			lblManLek1.setBackground(Color.PINK);
+			lblManLek1.setBounds(10, 130, 80, 14);
+			add(lblManLek1);
+			
+			JLabel lblManLek2 = new JLabel("");
+			lblManLek2.setOpaque(true);
+			lblManLek2.setBackground(new Color(0, 0, 205));
+			lblManLek2.setBounds(10, 155, 80, 14);
+			add(lblManLek2);
+			
+			JLabel lblManLek3 = new JLabel("");
+			lblManLek3.setBackground(Color.BLACK);
+			lblManLek3.setOpaque(true);
+			lblManLek3.setBounds(10, 172, 80, 14);
+			add(lblManLek3);
+			
+			JLabel lblManLek4 = new JLabel("");
+			lblManLek4.setBackground(Color.RED);
+			lblManLek4.setOpaque(true);
+			lblManLek4.setBounds(10, 198, 80, 14);
+			add(lblManLek4);
+			
+			JButton btnNewButton_2 = new JButton("Load lektioner");
+			btnNewButton_2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					CBSTEST input = new CBSTEST();
+					
+					
+				}
+			});
+			btnNewButton_2.setBounds(232, 44, 112, 23);
+			add(btnNewButton_2);
 			
 			
 			
@@ -310,7 +379,6 @@ public class CalendarTest extends JPanel {
 			
 			
 		}
-	
 	}
 
 

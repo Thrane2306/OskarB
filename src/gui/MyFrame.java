@@ -26,6 +26,7 @@ public class MyFrame extends JFrame {
 		
 		setTitle("CBS Calendar");
 		setSize(SIZE);
+		
 		getContentPane().setLayout(new CardLayout(0, 0));
 		card.setLayout(GUI = new CardLayout());
 		
