@@ -2,10 +2,14 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import javax.swing.border.LineBorder;
 
@@ -26,6 +30,7 @@ public class CalendarTest extends JPanel {
 		private static GregorianCalendar calendar = new GregorianCalendar();
 		private static int currentDay, currentMonth, currentDayWeek, currentDato, currentYear, daysPerMonth;
 		private JTable table;
+		private static String result, result1;
 
 		public CalendarTest() {
 			setBackground(Color.WHITE);
@@ -113,43 +118,43 @@ public class CalendarTest extends JPanel {
 			lblTir.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 			lblTir.setBorder(new LineBorder(new Color(0, 0, 0)));
 			lblTir.setBackground(Color.WHITE);
-			lblTir.setBounds(10, 96, 80, 23);
+			lblTir.setBounds(90, 96, 80, 23);
 			add(lblTir);
 
 			lblOns = new JLabel();
 			lblOns.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 			lblOns.setBorder(new LineBorder(new Color(0, 0, 0)));
-			lblOns.setBounds(90, 96, 80, 23);
+			lblOns.setBounds(170, 96, 80, 23);
 			add(lblOns);
 
 			lblTor = new JLabel();
 			lblTor.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 			lblTor.setBorder(new LineBorder(new Color(0, 0, 0)));
-			lblTor.setBounds(170, 96, 80, 23);
+			lblTor.setBounds(250, 96, 80, 23);
 			add(lblTor);
 			
 			lblFre = new JLabel();
 			lblFre.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 			lblFre.setBorder(new LineBorder(new Color(0, 0, 0)));
-			lblFre.setBounds(250, 96, 80, 23);
+			lblFre.setBounds(330, 96, 80, 23);
 			add(lblFre);
 
 			lblLor = new JLabel();
 			lblLor.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 			lblLor.setBorder(new LineBorder(new Color(0, 0, 0)));
-			lblLor.setBounds(330, 96, 80, 23);
+			lblLor.setBounds(410, 96, 80, 23);
 			add(lblLor);
 
 			lblSon = new JLabel();
 			lblSon.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 			lblSon.setBorder(new LineBorder(new Color(0, 0, 0)));
-			lblSon.setBounds(410, 96, 80, 23);
+			lblSon.setBounds(490, 96, 80, 23);
 			add(lblSon);
 
 			lblMan = new JLabel();
 			lblMan.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 			lblMan.setBorder(new LineBorder(new Color(0, 0, 0)));
-			lblMan.setBounds(490, 96, 80, 23);
+			lblMan.setBounds(10, 96, 80, 23);
 			add(lblMan);
 			
 		
@@ -374,12 +379,59 @@ public class CalendarTest extends JPanel {
 				lblSon.setText("Lor" + (t + "/" + m));
 				
 			
-
-			      
-			
-			
-			
 			}
+			
+			
+			
+		}
+		public static void load(String desc, String type, ArrayList<String> start, ArrayList<String> end) {
+			// format  :[2014, 11, 20, 9, 50]
+			/*String test0 = "2014";
+			String test1 = "11"; 
+			String test2 = "20";*/
+			String string = lblMan.getText();
+			
+			
+			DateFormat originalFormat = new SimpleDateFormat("EE dd/MM");
+			DateFormat targetFormat = new SimpleDateFormat("2014" + " MM dd");
+			Date date;
+			try {
+				date = originalFormat.parse(string);
+				result = targetFormat.format(date);
+				//System.out.println(formattedDate);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+			
+			
+			String listString = "";
+
+			for (String s : start)
+			{
+			    listString += s + " ";
+			}
+			SimpleDateFormat orgFormatter = new SimpleDateFormat("yyyy MM dd hh mm");
+			SimpleDateFormat tarFormat = new SimpleDateFormat("yyyy MM dd");
+			String dateInString = listString;
+			Date date1;
+			try {
+				date1 = orgFormatter.parse(dateInString);
+				result1 = tarFormat.format(date1);
+				//System.out.println(result);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (result.equals(result1)){
+				System.out.println("ok");
+			}
+
+			
+		
+			
+			//System.out.println(desc + " " + type + " " + start + " " + end );
 			
 			
 		}
