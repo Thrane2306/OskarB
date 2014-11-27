@@ -31,6 +31,7 @@ public class CalendarPanel extends JPanel {
 
 		// btnSettings = new JButton("Settings");
 		CalBut setBut = new CalBut();
+		setBut.setForeground(Color.WHITE);
 		// but.setForeground(Color.BLACK);
 		setBut.setBounds(12, 13, 270, 50);
 		panelOpt.add(setBut);

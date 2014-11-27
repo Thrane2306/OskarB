@@ -18,6 +18,7 @@ public class CalBut extends JButton {
 		ImageIcon image2 = new ImageIcon(imgPath + "knap2.jpg");
 		setIcon(image);
 		setRolloverIcon(image2);
+		
 
 		setCursor(new Cursor(Cursor.HAND_CURSOR));
 
@@ -27,5 +28,6 @@ public class CalBut extends JButton {
 		setVerticalTextPosition(SwingConstants.CENTER);
 		setHorizontalTextPosition(SwingConstants.CENTER);
 	}
+	
 
 }
