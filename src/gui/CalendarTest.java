@@ -69,11 +69,13 @@ public class CalendarTest extends JPanel {
 			daysPerMonth = calendar.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
 			currentDayWeek = realDayOfWeek;
 			currentDato = currentDay - currentDayWeek;
-			System.out.println(calendar.getTime());			
-			
-
-			JButton btnNewButton = new JButton("Load");
-			btnNewButton.addActionListener(new ActionListener() {
+			System.out.println(calendar.getTime());	
+				
+			CalBut loaBut = new CalBut();
+			loaBut.setBounds(244, 11, 64, 23);
+			add(loaBut);
+			loaBut.setText("Load");
+			loaBut.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Calendar c = Calendar.getInstance();
 					
@@ -104,8 +106,7 @@ public class CalendarTest extends JPanel {
 				}
 			});
 			
-			btnNewButton.setBounds(244, 11, 64, 23);
-			add(btnNewButton);
+			
 
 			
 			lblTir = new JLabel();
@@ -153,9 +154,13 @@ public class CalendarTest extends JPanel {
 			
 		
 			
-			JButton btnNewButton_1 = new JButton("Previous Week");
-			btnNewButton_1.setBackground(new Color(255, 255, 255));
-			btnNewButton_1.addActionListener(new ActionListener() {
+			//JButton btnNewButton_1 = new JButton("Previous Week");
+			CalBut prevWeek = new CalBut();
+			prevWeek.setText("Previous");
+			prevWeek.setBounds(10, 11, 124, 23);
+			add(prevWeek);
+			//btnNewButton_1.setBackground(new Color(255, 255, 255));
+			prevWeek.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					c.add(Calendar.DATE, -1);
 					lblSon.setText(df.format(c.getTime()));
@@ -179,8 +184,7 @@ public class CalendarTest extends JPanel {
 					lblMan.setText(df.format(c.getTime()));
 				}
 			});
-			btnNewButton_1.setBounds(10, 11, 124, 23);
-			add(btnNewButton_1);
+			
 			
 			JButton btnNextWeek = new JButton("Next Week");
 			btnNextWeek.addActionListener(new ActionListener() {
