@@ -8,6 +8,7 @@ import javax.swing.JButton;
 
 public class CalendarPanel extends JPanel {
 	public static JPanel panelCal, panelOpt;
+	public static CalendarTest cT = new CalendarTest();
 	private JButton btnSettings;
 	private JPanel panel;
 
@@ -36,7 +37,7 @@ public class CalendarPanel extends JPanel {
 		panelOpt.add(setBut);
 		panelCal.setLayout(null);
 		setBut.setText("Settings");
-		CalendarTest cT = new CalendarTest();
+		//CalendarTest cT = new CalendarTest();
 		cT.setBorder(new LineBorder(Color.BLACK));
 		cT.setForeground(Color.BLACK);
 		cT.setBounds(0, 0, 856, 677);
