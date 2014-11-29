@@ -47,7 +47,6 @@ public class CalendarLogin extends JPanel {
 		panel.add(lblPassword);
 
 		CalBut but = new CalBut();
-		but.setForeground(Color.WHITE);
 		but.setBounds(528, 425, 150, 70);
 		panel.add(but);
 		but.setText("OK");

@@ -1,11 +1,13 @@
 package gui;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
 import java.awt.Rectangle;
+
 import javax.swing.JButton;
-import javax.swing.JLabel;
 
 public class CalendarPanel extends JPanel {
 	public static JPanel panelCal, panelOpt;
@@ -31,7 +33,6 @@ public class CalendarPanel extends JPanel {
 
 		// btnSettings = new JButton("Settings");
 		CalBut setBut = new CalBut();
-		setBut.setForeground(Color.WHITE);
 		// but.setForeground(Color.BLACK);
 		setBut.setBounds(12, 13, 270, 50);
 		panelOpt.add(setBut);
@@ -49,6 +50,7 @@ public class CalendarPanel extends JPanel {
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(8, 703, 1160, 197);
 		add(panel);
+
 		
 		JLabel label = new JLabel("Quote of the day: ");
 		label.setBounds(12, 40, 400, 101);
@@ -59,6 +61,7 @@ public class CalendarPanel extends JPanel {
 		calBut.setForeground(Color.WHITE);
 		calBut.setBounds(-37, 0, 270, 50);
 		panel.add(calBut);
+
 		setVisible(true);
 
 	}
