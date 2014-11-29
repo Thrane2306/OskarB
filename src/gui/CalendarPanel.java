@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 public class CalendarPanel extends JPanel {
 	public static JPanel panelCal, panelOpt;
 	private JButton btnSettings;
-	private JPanel panel;
 
 	public CalendarPanel() {
 		setBackground(Color.WHITE);
@@ -19,14 +18,14 @@ public class CalendarPanel extends JPanel {
 
 		panelCal = new JPanel();
 		panelCal.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelCal.setBounds(314, 212, 856, 677);
+		panelCal.setBounds(314, 13, 856, 677);
 		add(panelCal);
 
 		panelOpt = new JPanel();
 		panelOpt.setForeground(Color.BLACK);
 		panelOpt.setBackground(Color.WHITE);
 		panelOpt.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelOpt.setBounds(10, 212, 294, 677);
+		panelOpt.setBounds(8, 13, 294, 677);
 		add(panelOpt);
 		panelOpt.setLayout(null);
 
@@ -43,24 +42,23 @@ public class CalendarPanel extends JPanel {
 		cT.setForeground(Color.BLACK);
 		cT.setBounds(0, 0, 856, 677);
 		panelCal.add(cT);
-
-		panel = new JPanel();
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
 		panel.setBorder(new LineBorder(Color.BLACK));
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(10, 13, 1160, 186);
+		panel.setBounds(8, 703, 1160, 197);
 		add(panel);
-		panel.setLayout(null);
 		
-		JLabel lblQuote = new JLabel("Quote of the day: ");
-		lblQuote.setBounds(12, 40, 400, 101);
-		panel.add(lblQuote);
+		JLabel label = new JLabel("Quote of the day: ");
+		label.setBounds(12, 40, 400, 101);
+		panel.add(label);
 		
-		//JButton btnLoadQuote = new JButton("Load quote");
-		CalBut loaQuo = new CalBut();
-		loaQuo.setForeground(Color.WHITE);
-		loaQuo.setText("Load Quote");
-		loaQuo.setBounds(-37, 0, 270, 50);
-		panel.add(loaQuo);
+		CalBut calBut = new CalBut();
+		calBut.setText("Load Quote");
+		calBut.setForeground(Color.WHITE);
+		calBut.setBounds(-37, 0, 270, 50);
+		panel.add(calBut);
 		setVisible(true);
 
 	}
