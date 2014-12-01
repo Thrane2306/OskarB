@@ -10,8 +10,10 @@ import java.awt.Rectangle;
 import javax.swing.JButton;
 
 public class CalendarPanel extends JPanel {
-	public static JPanel panelCal, panelOpt;
+	public static JPanel panelCal, panelOpt, panel;
+	public static CalendarTest cT = new CalendarTest();
 	private JButton btnSettings;
+	
 
 	public CalendarPanel() {
 		setBackground(Color.WHITE);
@@ -38,13 +40,13 @@ public class CalendarPanel extends JPanel {
 		panelOpt.add(setBut);
 		panelCal.setLayout(null);
 		setBut.setText("Settings");
-		CalendarTest cT = new CalendarTest();
+		//CalendarTest cT = new CalendarTest();
 		cT.setBorder(new LineBorder(Color.BLACK));
 		cT.setForeground(Color.BLACK);
 		cT.setBounds(0, 0, 856, 677);
 		panelCal.add(cT);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(new LineBorder(Color.BLACK));
 		panel.setBackground(Color.WHITE);
