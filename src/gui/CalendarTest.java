@@ -77,7 +77,7 @@ public class CalendarTest extends JPanel {
 			System.out.println(calendar.getTime());	
 				
 			CalBut loaBut = new CalBut();
-			loaBut.setBounds(244, 11, 64, 23);
+			loaBut.setBounds(244, 11, 270, 50);
 			add(loaBut);
 			loaBut.setText("Load");
 			loaBut.addActionListener(new ActionListener() {
@@ -162,7 +162,7 @@ public class CalendarTest extends JPanel {
 			//JButton btnNewButton_1 = new JButton("Previous Week");
 			CalBut prevWeek = new CalBut();
 			prevWeek.setText("Previous");
-			prevWeek.setBounds(10, 11, 124, 23);
+			prevWeek.setBounds(10, 11, 270, 50);
 			add(prevWeek);
 			//btnNewButton_1.setBackground(new Color(255, 255, 255));
 			prevWeek.addActionListener(new ActionListener() {
@@ -191,8 +191,12 @@ public class CalendarTest extends JPanel {
 			});
 			
 			
-			JButton btnNextWeek = new JButton("Next Week");
-			btnNextWeek.addActionListener(new ActionListener() {
+			//JButton btnNextWeek = new JButton("Next Week");
+			CalBut nxtWeek = new CalBut();
+			nxtWeek.setText("Next week");
+			nxtWeek.setBounds(500, 11, 270, 50);
+			add(nxtWeek);
+			nxtWeek.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					lblMan.setText(df.format(c.getTime()));
 					c.add(Calendar.DATE, 1);
@@ -222,8 +226,7 @@ public class CalendarTest extends JPanel {
 					
 				}
 			});
-			btnNextWeek.setBounds(459, 11, 124, 23);
-			add(btnNextWeek);
+			
 			
 			JLabel lblTirsdag = new JLabel("");
 			lblTirsdag.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -284,16 +287,19 @@ public class CalendarTest extends JPanel {
 			lblManLek4.setBounds(10, 198, 80, 14);
 			add(lblManLek4);
 			
-			JButton btnNewButton_2 = new JButton("Load lektioner");
-			btnNewButton_2.addActionListener(new ActionListener() {
+			//JButton btnNewButton_2 = new JButton("Load lektioner");
+			CalBut loadLek = new CalBut();
+			loadLek.setText("Load classes");
+			loadLek.setBounds(232, 44, 270, 50);
+			add(loadLek);
+			loadLek.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					CBSTEST input = new CBSTEST();
 					
 					
 				}
 			});
-			btnNewButton_2.setBounds(232, 44, 112, 23);
-			add(btnNewButton_2);
+			
 			
 			
 			
