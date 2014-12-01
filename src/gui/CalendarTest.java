@@ -288,6 +288,7 @@ public class CalendarTest extends JPanel {
 			add(lblManLek4);
 			
 			//JButton btnNewButton_2 = new JButton("Load lektioner");
+			//CustomButton
 			CalBut loadLek = new CalBut();
 			loadLek.setText("Load classes");
 			loadLek.setBounds(232, 44, 270, 50);
