@@ -49,6 +49,11 @@ public class Switch {
 			overallID = "getCalendar";
 			cbsID = arg1;
 			answer = Push.push(JSONStrings.getCalendar(overallID, cbsID));
+			break;
+		case "getWeather":
+			
+			answer = Push.push(JSONStrings.getWeather());
+			break;
 		}
 		
 		return answer;

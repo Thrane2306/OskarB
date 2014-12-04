@@ -16,19 +16,21 @@ public class CBSTEST {
 	private static ArrayList<String> info3, info4;
 	
 	
-	public CBSTEST() {
-	String overallID, cbsID, pik;
+	public CBSTEST(String UserId) {
+	String overallID, cbsID, nothing;
 	overallID = "getCalendar";
-	cbsID = "anlo13af";
-	pik = "pik";
+	cbsID = UserId;
+	nothing = "";
+	
 	
 	try {
-		String answer = Switch.switchMethod(overallID, cbsID, pik);
+		String answer = Switch.switchMethod(overallID, cbsID, nothing);
 		System.out.println("her");
 		JsonParser parser = new JsonParser();
         JsonObject obj = parser.parse(answer).getAsJsonObject();
         Gson gson = new Gson();
         Events events = gson.fromJson(obj, Events.class);
+        CalendarPanel.cT.removeAll();
 		
         ArrayList<Event> calendarData = events.getEvents();
         
@@ -47,14 +49,15 @@ public class CBSTEST {
         	//System.out.println(event.getType());
         	//System.out.println(event.getStart());
         	//System.out.println(event.getEnd());
-        	CalendarTest.load(event.getDescription(), event.getType(), event.getStart(), event.getEnd());
+        	CalendarPanel.load(event.getDescription(), event.getType(), event.getStart(), event.getEnd());
 			//System.out.println(event.getStart());
 		}
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	
+	CalendarPanel.drawBorders();
+	CalendarPanel.cT.repaint();
 	
 	
 }

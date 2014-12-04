@@ -13,4 +13,10 @@ public class JSONStrings {
 	+ "\",\"cbsID\":\"" + cbsID + "\"}";
 	return json;
 	}
+	public static String getWeather() {
+		
+		String json = "{\"serialVersionUID\":1,\"overallID\":\"getWeather\"}";
+				
+		return json;
+	}
 }

@@ -10,9 +10,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
-
+import logic.User;
 import javax.swing.border.LineBorder;
-
+//import CalendarPanel.cT;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -25,7 +25,7 @@ import java.awt.Rectangle;
 public class CalendarTest extends JPanel {
 
 	// TODO Auto-generated constructor stub
-	Calendar c = Calendar.getInstance();
+	private static Calendar c = Calendar.getInstance();
 	DateFormat df = new SimpleDateFormat("EEE dd/MM");
 	private static JLabel lblMan, lblTir, lblOns, lblTor, lblFre, lblLor,
 			lblSon, lblMonth, lblMandag = new JLabel();
@@ -43,35 +43,18 @@ public class CalendarTest extends JPanel {
 		setLayout(null);
 		a = 0;
 
-		// Get calendar set to current date and time
-		// Calendar c = Calendar.getInstance();
-
-		// Set the calendar to monday of the current week
 		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 
-		// Print dates of the current week starting on Monday
-		// DateFormat df = new SimpleDateFormat("EEE dd/MM/yyyy");
-		/*
-		 * for (int i = 0; i < 7; i++) {
-		 * System.out.println(df.format(c.getTime())); c.add(Calendar.DATE, 1);
-		 * }
-		 */
 
 		int realDay, realMonth, realYear, realWeek;
 		final int realDayOfWeek;
 
-		// GregorianCalendar calendar = new GregorianCalendar();
+		
 		realDay = calendar.get(GregorianCalendar.DAY_OF_MONTH);
 		realMonth = calendar.get(GregorianCalendar.MONTH);
 		realYear = calendar.get(GregorianCalendar.YEAR);
 		realWeek = calendar.get(GregorianCalendar.WEEK_OF_YEAR);
 		realDayOfWeek = calendar.get(GregorianCalendar.DAY_OF_WEEK);
-
-		/*
-		 * System.out.println(realDay); System.out.println(realDayOfWeek);
-		 * System.out.println(realWeek); System.out.println(realMonth);
-		 * System.out.println(realYear);
-		 */
 		currentDay = realDay;
 		currentMonth = realMonth;
 		currentYear = realYear;
@@ -81,89 +64,88 @@ public class CalendarTest extends JPanel {
 		currentDato = currentDay - currentDayWeek;
 		System.out.println(calendar.getTime());
 
+		
+
+		
+		
 		CalBut loaBut = new CalBut();
 		loaBut.setBounds(244, 11, 270, 50);
 		add(loaBut);
-		loaBut.setText("Load");
-		loaBut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Calendar c = Calendar.getInstance();
-
-				c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-
-				lblMan.setText(df.format(c.getTime()));
-				c.add(Calendar.DATE, 1);
-
-				lblTir.setText(df.format(c.getTime()));
-				c.add(Calendar.DATE, 1);
-
-				lblOns.setText(df.format(c.getTime()));
-				c.add(Calendar.DATE, 1);
-
-				lblTor.setText(df.format(c.getTime()));
-				c.add(Calendar.DATE, 1);
-
-				lblFre.setText(df.format(c.getTime()));
-				c.add(Calendar.DATE, 1);
-
-				lblLor.setText(df.format(c.getTime()));
-				c.add(Calendar.DATE, 1);
-
-				lblSon.setText(df.format(c.getTime()));
-				c.add(Calendar.DATE, 1);
-
-			}
-		});
+		
 
 		lblTir = new JLabel();
 		lblTir.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		lblTir.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblTir.setBackground(Color.WHITE);
 		lblTir.setBounds(129, 117, 119, 36);
-		add(lblTir);
+		cT.add(lblTir);
 
 		lblOns = new JLabel();
 		lblOns.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		lblOns.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblOns.setBounds(248, 117, 119, 36);
-		add(lblOns);
+		cT.add(lblOns);
 
 		lblTor = new JLabel();
 		lblTor.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		lblTor.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblTor.setBounds(367, 117, 119, 36);
-		add(lblTor);
+		cT.add(lblTor);
 
 		lblFre = new JLabel();
 		lblFre.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		lblFre.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblFre.setBounds(486, 117, 119, 36);
-		add(lblFre);
+		cT.add(lblFre);
 
 		lblLor = new JLabel();
 		lblLor.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		lblLor.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblLor.setBounds(605, 117, 119, 36);
-		add(lblLor);
+		cT.add(lblLor);
 
 		lblSon = new JLabel();
 		lblSon.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		lblSon.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblSon.setBounds(724, 117, 119, 36);
-		add(lblSon);
+		cT.add(lblSon);
 
 		lblMan = new JLabel();
 		lblMan.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		lblMan.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblMan.setBounds(10, 117, 119, 36);
-		add(lblMan);
+		cT.add(lblMan);
+		
+		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 
-		// JButton btnNewButton_1 = new JButton("Previous Week");
+		lblMan.setText(df.format(c.getTime()));
+		c.add(Calendar.DATE, 1);
+
+		lblTir.setText(df.format(c.getTime()));
+		c.add(Calendar.DATE, 1);
+
+		lblOns.setText(df.format(c.getTime()));
+		c.add(Calendar.DATE, 1);
+
+		lblTor.setText(df.format(c.getTime()));
+		c.add(Calendar.DATE, 1);
+
+		lblFre.setText(df.format(c.getTime()));
+		c.add(Calendar.DATE, 1);
+
+		lblLor.setText(df.format(c.getTime()));
+		c.add(Calendar.DATE, 1);
+
+		lblSon.setText(df.format(c.getTime()));
+		c.add(Calendar.DATE, 1);
+		
+		CBSTEST load = new CBSTEST("anlo13af");
+
 		CalBut prevWeek = new CalBut();
 		prevWeek.setText("Previous");
 		prevWeek.setBounds(10, 11, 270, 50);
 		add(prevWeek);
-		// btnNewButton_1.setBackground(new Color(255, 255, 255));
+		
 		prevWeek.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				c.add(Calendar.DATE, -1);
@@ -189,7 +171,7 @@ public class CalendarTest extends JPanel {
 			}
 		});
 
-		// JButton btnNextWeek = new JButton("Next Week");
+	
 		CalBut nxtWeek = new CalBut();
 		nxtWeek.setText("Next week");
 		nxtWeek.setBounds(500, 11, 270, 50);
@@ -217,11 +199,7 @@ public class CalendarTest extends JPanel {
 				lblSon.setText(df.format(c.getTime()));
 				c.add(Calendar.DATE, 1);
 
-				/*
-				 * for (int i = 0; i < 7; i++) {
-				 * System.out.println(df.format(c.getTime()));
-				 * c.add(Calendar.DATE, 1); }
-				 */
+				
 
 			}
 		});
@@ -261,93 +239,17 @@ public class CalendarTest extends JPanel {
 		lblMandag.setBounds(724, 164, 119, 502);
 		add(lblMandag);
 
-		// JButton btnNewButton_2 = new JButton("Load lektioner");
-		// CustomButton
+
 		CalBut loadLek = new CalBut();
 		loadLek.setText("Load classes");
 		loadLek.setBounds(232, 44, 270, 50);
 		add(loadLek);
 		loadLek.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				CBSTEST input = new CBSTEST();
+				CBSTEST input = new CBSTEST(CalendarLogin.currentUser.getUsername());
 
 			}
 		});
-
-	}
-
-	public void wh(int month, int dato) {
-
-		int m = month;
-		int n = dato;
-		int max = calendar.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
-		// max = 30dage i m�ned(septemper)
-		// int a = 1;
-		// i = 1->7, m=10
-
-		// max = 30dage i m�ned
-
-		// int x = currentDay - currentDayWeek +1;
-		// int o = 0;
-		// x=24
-		// String a = String.valueOf(m);
-		// lblMonth.setText(a);
-		// a=10
-		// cal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
-		// System.out.println(a);
-		// System.out.println(max);
-		/*
-		 * int t = n+i; System.out.println(t); if(t <= max) { o = 1; } else if
-		 * (t > max){ System.out.println("not ok" +i); update(i,
-		 * (currentMonth+1), 0);
-		 * 
-		 * o = 2; }
-		 */
-		int caseID = 0;
-		while (n < max && caseID < 7) {
-			n++;
-			caseID++;
-			System.out.println(n + " " + caseID);
-			update(caseID, n, m);
-
-		}
-		if (n == max)
-			n = 0;
-		while (n < max && caseID < 7) {
-			n++;
-			caseID++;
-			System.out.println(caseID + " " + n);
-
-			update(caseID, n, (m + 1));
-		}
-		// update(caseID,1);
-
-	}
-
-	public void update(int caseID, int dato, int month) {
-		int m = month;
-
-		int i = caseID;
-		int t = dato;
-
-		switch (i) {
-
-		case 1:
-			lblMan.setText("Son" + (t + "/" + m));
-		case 2:
-			lblTir.setText("Man" + (t + "/" + m));
-		case 3:
-			lblOns.setText("Tir" + (t + "/" + m));
-		case 4:
-			lblTor.setText("Ons" + (t + "/" + m));
-		case 5:
-			lblFre.setText("Tor" + (t + "/" + m));
-		case 6:
-			lblLor.setText("Fre" + (t + "/" + m));
-		case 7:
-			lblSon.setText("Lor" + (t + "/" + m));
-
-		}
 
 	}
 
@@ -358,7 +260,7 @@ public class CalendarTest extends JPanel {
 		 * String test0 = "2014"; String test1 = "11"; String test2 = "20";
 		 */
 		String string = lblMan.getText();
-		a++;
+		//a++;
 
 		DateFormat originalFormat = new SimpleDateFormat("EE dd/MM");
 		DateFormat targetFormat = new SimpleDateFormat("w");
@@ -395,12 +297,7 @@ public class CalendarTest extends JPanel {
 		if (result.equals(result1)) {
 
 			c++;
-			// System.out.println("uge nr ok");
 
-			// for (int v = 55; v <= 1; v += 25)
-
-			// lblManLek1.setText(desc);
-			// lblManLek1.setBackground(Color.PINK);
 			Integer weekDay = Integer.valueOf(result2);
 			Integer sH = Integer.valueOf(start.get(3));
 			Integer sM = Integer.valueOf(start.get(4));
@@ -415,32 +312,11 @@ public class CalendarTest extends JPanel {
 			float delAfHeleDagen = (total / 840);
 			float aP = 502 * delAfHeleDagen;
 			int height = Math.round(aP);
-			// System.out.println(total);
 
 			int width = 118;
-			// System.out.println(sT);
+			
 			setLabels(1, 1, width, height, desc, weekDay, c, sH, type, sM);
-			/*
-			 * totalAYearLabel = new JLabel[30]; for (int i = 0; i < 30; i++)
-			 * totalAYearLabel[i] = new JLabel();
-			 * totalAYearLabel[0].setBounds(10, 130, 80, 14); for (int i = 0; i
-			 * < 30; i++){
-			 * 
-			 * 
-			 * totalAYearLabel[i].setBounds(10, 130, 80, a);
-			 * totalAYearLabel[i].setOpaque(true);
-			 * totalAYearLabel[i].setBackground(Color.PINK);
-			 * totalAYearLabel[i].setText(desc);
-			 * CalendarPanel.cT.add(totalAYearLabel[i]); //JLabel test = new
-			 * JLabel("sdfdgffd"); //test.setBounds(100,100,500,500);
-			 * CalendarPanel.cT.add(totalAYearLabel[i]);
-			 * 
-			 * 
-			 * 
-			 * CalendarPanel.cT.repaint();
-			 */
 
-			// lblManLek1.setBounds(10, 130, 80, a);
 
 		}
 
