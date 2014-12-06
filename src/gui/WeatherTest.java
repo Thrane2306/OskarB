@@ -26,34 +26,23 @@ public class WeatherTest {
 	try {
 		String answer = Switch.switchMethod(overallID, "", "");
 		JsonParser parser = new JsonParser();
-        JsonObject obj = parser.parse(answer).getAsJsonObject();
-        Gson gson = new Gson();
-        WeatherList weatherList = gson.fromJson(obj, WeatherList.class);
-       // CalendarPanel.cT.removeAll();
+		JsonObject obj = parser.parse(answer).getAsJsonObject();
+		Gson gson = new Gson();
+		WeatherList weatherlist = gson.fromJson(obj, WeatherList.class);
+		ArrayList<Weather> weatherData = weatherlist.getWeatherList();
+		//WeekCalendar.panel_3.removeAll();
+		int c = 0;
+		for (Weather weather : weatherData) {
+			
+			String date = weather.getDate();
+			String celsius = weather.getCelsius();
+			String desc = weather.getDesc();
 		
-        ArrayList<Weather> weatherData = weatherList.getWeather();
-        
-        for (Weather weather : weatherData) {
-        	
-        	String date =  weather.getDate();
-        	String desc =  weather.getDesc();
-        	String celsius =  weather.getCelsius();
-        	String qotd =  weather.getQuote();
-        	
-        	
-        	 
-        	
-        	
-
-        	System.out.println(date);
-        	System.out.println(desc);
-        	System.out.println(celsius);
-        	System.out.println(qotd);
-        	//CalendarPanel.load(event.getDescription(), event.getType(), event.getStart(), event.getEnd());
-			//System.out.println(event.getStart());
-		}
+			CalendarPanel.weatherLoad(date, desc, celsius, c);
+			++c;
+			
+		} 
 	} catch (Exception e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	//CalendarPanel.drawBorders();

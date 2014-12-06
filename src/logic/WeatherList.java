@@ -6,19 +6,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class WeatherList {
-	ArrayList<Weather> weatherList = new ArrayList<Weather>();
+	ArrayList<Weather> weatherlist = new ArrayList<Weather>();
 	
-	public ArrayList<Weather> getWeather() {
-		return weatherList;
+	public ArrayList<Weather> getWeatherList() {
+		return weatherlist;
 	}
 
     
-    public void setweatherList(ArrayList<Weather> weather) {
-		this.weatherList = weather;
+    public void setWeatherList(ArrayList<Weather> weather) {
+		this.weatherlist = weather;
 	}
     
 	public String toString() {
-		return Arrays.toString(weatherList.toArray());
+		return Arrays.toString(weatherlist.toArray());
 	}
 
 }

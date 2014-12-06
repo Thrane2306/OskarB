@@ -1,5 +1,7 @@
 package logic;
 
+import java.util.ArrayList;
+
 public class JSONStrings {
 	public static String login(String overallID, String email, String password) {
 		String json = "{\"serialVersionUID\":1,\"overallID\":\"" + overallID
@@ -17,6 +19,26 @@ public class JSONStrings {
 		
 		String json = "{\"serialVersionUID\":1,\"overallID\":\"getWeather\"}";
 				
+		return json;
+	}
+	public static String createEvent(String location, String createdBy,
+			ArrayList<String> start, ArrayList<String> end, String name,
+			String text) {
+		String json = "{\"serialVersionUID\":1,\"overallID\":\"createEvent\",\"location\":\"" + location + 
+				"\",\"createdby\":\"" + createdBy + "\",\"start\":" + start + ",\"end\":" + end + ",\"title\":\"" 
+				+ name + "\",\"description\":\"" + text + "\"}";  
+		System.out.println(json);
+		return json;
+		
+	}
+	public static String getQuote() {
+		String json = "{\"overallID\":\"getQuote\"}";
+		return json;
+	}
+	public static String addUser(String overallID, String email, String password) {
+		String json = "{\"serialVersionUID\":1,\"overallID\":\"" + overallID
+				+ "\",\"email\":\"" + email + "\",\"password\":\"" + password
+				+ "\"}";
 		return json;
 	}
 }

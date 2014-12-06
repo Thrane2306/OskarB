@@ -1,5 +1,6 @@
 package gui;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -8,6 +9,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -23,46 +25,79 @@ import javax.swing.JButton;
 import logic.Switch;
 
 import javax.swing.JTextPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 
+@SuppressWarnings("serial")
 public class CalendarPanel extends JPanel {
 	public static JPanel panelOpt, panel, cT, panelDate;
 	//public static CalendarTest cT;
+	@SuppressWarnings("unused")
 	private JButton btnSettings;
 	
 	private static Calendar c = Calendar.getInstance();
 	static DateFormat df = new SimpleDateFormat("EEE dd/MM");
-	private static JLabel lblMonth, lblMandag,lblOns, lblMan, lblTir, lblTor, lblFre, lblLor, lblSon = new JLabel();
-	private static GregorianCalendar calendar = new GregorianCalendar();
-	private static int currentDay, currentMonth, currentDayWeek, currentDato,
-			currentYear, daysPerMonth, a;
+	static DateFormat current = new SimpleDateFormat("YYYY-MM-dd");
+	@SuppressWarnings("unused")
+	private static JLabel lblMonth, lblMandag,lblOns, lblMan, lblTir, lblTor, lblFre, lblLor, lblSon, lblToday, lblQuote, lblWeatherIcon;
+	
+	@SuppressWarnings("unused")
 	private JTable table;
-	private static JTextPane textpane;
 	private static String result, result1, result2;
-	static JLabel[] totalAYearLabel;
-	private static CalBut nxtWeek, prevWeek;
+	private static String currentDate;
+	private static JTextArea textAreaToday, textAreaNext;
+	static JLabel[] Eventlbls, label;
+	private static CalBut nxtWeek, prevWeek,btnnewEvent, btnLogout;
+	static JLabel bullseye;
+	private JLabel lblNewLabel;
 	
 
 	public CalendarPanel() {
 		setBackground(Color.WHITE);
 		setBounds(new Rectangle(0, 0, 1180, 900));
 		setLayout(null);
+		currentDate = current.format(c.getTime());
+		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		
+	
 
 		panelOpt = new JPanel();
 		panelOpt.setForeground(Color.BLACK);
 		panelOpt.setBackground(Color.WHITE);
 		panelOpt.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelOpt.setBounds(8, 13, 294, 677);
+		panelOpt.setBounds(8, 13, 211, 677);
 		add(panelOpt);
 		panelOpt.setLayout(null);
 		
-		JLabel lblToday = new JLabel("Weather Today");
+		lblToday = new JLabel("Weather Today");
+		lblToday.setHorizontalAlignment(SwingConstants.CENTER);
 		lblToday.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblToday.setBounds(72, 11, 142, 45);
+		lblToday.setBounds(10, 11, 200, 45);
 		panelOpt.add(lblToday);
 		
-		textpane = new JTextPane();
-		textpane.setBounds(10, 78, 274, 96);
-		panelOpt.add(textpane);
+		lblWeatherIcon = new JLabel("");
+		lblWeatherIcon.setBounds(137, 75, 64, 53);
+		panelOpt.add(lblWeatherIcon);
+		
+		textAreaToday = new JTextArea();
+		textAreaToday.setEditable(false);
+		textAreaToday.setBounds(10, 45, 200, 246);
+		panelOpt.add(textAreaToday);
+		
+		JLabel lblNextFour = new JLabel("Weather for the next 4 days");
+		lblNextFour.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNextFour.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNextFour.setBounds(10, 302, 200, 33);
+		panelOpt.add(lblNextFour);
+		
+		textAreaNext = new JTextArea();
+		textAreaNext.setEditable(false);
+		textAreaNext.setFont(new Font("Monospaced", Font.PLAIN, 11));
+		textAreaNext.setBounds(10, 346, 200, 320);
+		panelOpt.add(textAreaNext);
+		
+		
+	
 		
 		/*cT = new CalendarTest();
 		cT.setBorder(new LineBorder(Color.BLACK));
@@ -78,15 +113,30 @@ public class CalendarPanel extends JPanel {
 		add(panel);
 
 		
-		JLabel label = new JLabel("Quote of the day: ");
-		label.setBounds(12, 40, 400, 101);
-		panel.add(label);
 		
-		CalBut calBut = new CalBut();
-		calBut.setText("Load Quote");
-		calBut.setForeground(Color.WHITE);
-		calBut.setBounds(-37, 0, 270, 50);
-		panel.add(calBut);
+		
+		btnLogout = new CalBut();
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CalendarLogin.currentUser.setUsername(null);
+				c = Calendar.getInstance();
+				MyFrame.calLog.reset();
+				MyFrame.GUI.show(MyFrame.card, "calLog");
+			}
+		});
+		btnLogout.setText("Logout");
+		btnLogout.setBounds(1032, 11, 118, 37);
+		panel.add(btnLogout);
+		
+		btnnewEvent = new CalBut();
+		btnnewEvent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CreateEvent newEvent = new CreateEvent();
+			}
+		});
+		btnnewEvent.setText("Create personal event");
+		btnnewEvent.setBounds(680, 11, 169, 37);
+		panel.add(btnnewEvent);
 		
 		
 		
@@ -101,32 +151,7 @@ public class CalendarPanel extends JPanel {
 		panelDate.setBounds(312, 13, 833, 90);
 		panelDate.setLayout(null);
 		add(panelDate);
-		
-	
 
-		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-
-
-		int realDay, realMonth, realYear, realWeek;
-		final int realDayOfWeek;
-
-		
-		realDay = calendar.get(GregorianCalendar.DAY_OF_MONTH);
-		realMonth = calendar.get(GregorianCalendar.MONTH);
-		realYear = calendar.get(GregorianCalendar.YEAR);
-		realWeek = calendar.get(GregorianCalendar.WEEK_OF_YEAR);
-		realDayOfWeek = calendar.get(GregorianCalendar.DAY_OF_WEEK);
-		currentDay = realDay;
-		currentMonth = realMonth;
-		currentYear = realYear;
-		daysPerMonth = calendar
-				.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
-		currentDayWeek = realDayOfWeek;
-		currentDato = currentDay - currentDayWeek;
-		System.out.println(calendar.getTime());
-		
-		
-		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 		
 		
 
@@ -176,12 +201,12 @@ public class CalendarPanel extends JPanel {
 		
 		nxtWeek = new CalBut();
 		nxtWeek.setText("Next week");
-		nxtWeek.setBounds(500, 11, 270, 50);
+		nxtWeek.setBounds(500, 11, 270, 36);
 		panelDate.add(nxtWeek);
 	
 		prevWeek = new CalBut();
 		prevWeek.setText("Previous");
-		prevWeek.setBounds(10, 11, 270, 50);
+		prevWeek.setBounds(10, 11, 270, 36);
 		panelDate.add(prevWeek);
 		
 		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
@@ -205,9 +230,39 @@ public class CalendarPanel extends JPanel {
 		c.add(Calendar.DATE, 1);
 
 		lblSon.setText(df.format(c.getTime()));
+		
+		bullseye = new JLabel("");
+		bullseye.setBounds(357, 29, 46, 14);
+		panelDate.add(bullseye);
 		c.add(Calendar.DATE, 1);
 		
 		CBSTEST load = new CBSTEST(CalendarLogin.currentUser.getUsername());
+		WeatherTest weather = new WeatherTest();
+		String QOTD = null;
+		try {
+			QOTD = Switch.switchMethod("getQuote", null, null);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}	
+		lblQuote = new JLabel("");
+		lblQuote.setFocusable(false);
+		lblQuote.setText("\"" + QOTD + "\"");
+		lblQuote.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		lblQuote.setBounds(10, 142, 1140, 44);
+		panel.add(lblQuote);
+		
+		
+		lblNewLabel = new JLabel("<html>" + "8:00" + "<br><br>" + "9:00" + "<br><br>" + "10:00" + "<br><br>" + "11:00" + "<br><br>" + "12:00" + "<br><br>" + 
+		"13:00" + "<br><br>" + "14:00" + "<br><br>" + "15:00" + "<br><br>" + "16:00" + "<br><br>" + "17:00" + "<br><br>" + "18:00" + "<br><br>"
+				+ "19:00" + "<br<br>" + "20:00" + "<br><br>" + "21:00" + "<br><br>" + "22:00");
+		lblNewLabel.setVerticalTextPosition(SwingConstants.TOP);
+		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel.setBounds(229, 180, 73, 510);
+		add(lblNewLabel);
+		
+
 		
 		
 		prevWeek.addActionListener(new ActionListener() {
@@ -313,20 +368,12 @@ public static void drawBorders(){
 
 	}
 
-		static void weatherLoad(String date, String desc, String celsius, String qotd){
-			
-			textpane.setText(date + desc + celsius + qotd);
-	
-		}
+		
 
 	static void load(String desc, String type, ArrayList<String> start,
-			ArrayList<String> end) {
-		// format :[2014, 11, 20, 9, 50]
-		/*
-		 * String test0 = "2014"; String test1 = "11"; String test2 = "20";
-		 */
+			ArrayList<String> end, String loc) {
+
 		String string = lblMan.getText();
-		//a++;
 
 		DateFormat originalFormat = new SimpleDateFormat("EE dd/MM");
 		DateFormat targetFormat = new SimpleDateFormat("w");
@@ -359,10 +406,10 @@ public static void drawBorders(){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		int c = 0;
+		int counter = 0;
 		if (result.equals(result1)) {
 
-			c++;
+			counter++;
 
 			Integer weekDay = Integer.valueOf(result2);
 			Integer sH = Integer.valueOf(start.get(3));
@@ -381,7 +428,7 @@ public static void drawBorders(){
 
 			int width = 118;
 			
-			setLabels(1, 1, width, height, desc, weekDay, c, sH, type, sM);
+			setLabels(1, 1, width, height, desc, weekDay, counter, sH, type, sM, eH, eM, loc);
 
 
 		}
@@ -389,7 +436,7 @@ public static void drawBorders(){
 	}
 
 	public static void setLabels(int x, int y, int w, int h, String desc,
-			int weekDay, int c, int sT, String type, int sM) {
+			int weekDay, int c, int sT, String type, int sM, int eT, int eM, String loc) {
 		int dayP = 0;
 
 		if (weekDay == 1) {
@@ -409,7 +456,8 @@ public static void drawBorders(){
 		} else {
 			System.out.println("fail");
 		}
-		
+		String sSM = String.format("%02d", sM);
+		String sEM = String.format("%02d", eM);
 		int starttidmin = (sT * 60) + sM;
 		float as = starttidmin - 480;
 		float ad = as / 840;
@@ -417,44 +465,41 @@ public static void drawBorders(){
 		//float b = a / 1400;
 		float e = ad * 502 + 74;
 		int d = Math.round(e);
-		System.out.println(ad);
+		
 		
 
-		totalAYearLabel = new JLabel[30];
+		Eventlbls = new JLabel[30];
 		for (int i = 0; i < c; i++)
-			totalAYearLabel[i] = new JLabel();
-		totalAYearLabel[0].setBounds(10, 64, 119, 60);
+			Eventlbls[i] = new JLabel();
+		Eventlbls[0].setBounds(10, 64, 119, 60);
 		for (int i = 0; i < c; i++) {
 
-			totalAYearLabel[i].setBounds(dayP, d, w, h);
-			System.out.println(dayP + " " + d + " " + w + " " + h);
-			totalAYearLabel[i].setOpaque(true);
+			Eventlbls[i].setBounds(dayP, d, w, h);
+			Eventlbls[i].setOpaque(true);
 
-			if (desc.contains("Makroøkonomi")) {
-				totalAYearLabel[i].setBackground(new Color(0, 255, 0));
+			if (desc.contains("Makro")) {
+				Eventlbls[i].setBackground(new Color(0, 255, 0));
 
-			} else if (desc.contains("Virksomhedens økonomiske styring")) {
-				totalAYearLabel[i].setBackground(new Color(102, 102, 255));
-			} else if (desc
-					.contains("Ledelse af IS - forandring, innovation og viden")) {
-				totalAYearLabel[i].setBackground(new Color(255, 102, 255));
+			} else if (desc.contains("Virksomhedens")) {
+				Eventlbls[i].setBackground(new Color(102, 102, 255));
+			} else if (desc.contains("Ledelse af IS - forandring, innovation og viden")) {
+				Eventlbls[i].setBackground(new Color(255, 102, 255));
+			} else if (desc.contains("systemer")) {
+				Eventlbls[i].setBackground(new Color(255, 153, 51));
 			} else {
-				totalAYearLabel[i].setBackground(Color.lightGray);
+				Eventlbls[i].setBackground(Color.YELLOW);
 			}
-			totalAYearLabel[i]
+			Eventlbls[i]
 					.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
-			totalAYearLabel[i].setText("<html>" + desc + "<br>" + type);
+			Eventlbls[i].setText("<html>" + desc + "<br>" + sT + ":" + sSM + "-" + eT + ":" + sEM + "@" + loc);
 			
-			cT.add(totalAYearLabel[i]);
+			
+			cT.add(Eventlbls[i]);
 
-			/*
-			 * JLabel test = new JLabel("sdfdgffd");
-			 * test.setBounds(100,100,500,500); CalendarPanel.cT.add(test);
-			 */
-			// System.out.println(desc + "\n" + type);
 
 			cT.repaint();
 		}
+		
 	
 
 
@@ -463,4 +508,45 @@ public static void drawBorders(){
 
 	
 }
+	
+	public static void weatherLoad(String date, String desc, String celsius, int c) throws ParseException{
+		SimpleDateFormat original = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat time = new SimpleDateFormat("HH:mm");
+		SimpleDateFormat dato = new SimpleDateFormat("dd/MM");
+		Date dtime = original.parse(date);
+		String stime = time.format(dtime);
+		String sdato = dato.format(dtime);
+		String image = null;
+
+		
+		if (date.contains(currentDate) && c == 0) {
+			if (desc.contains("sky")) {
+				image = "sun.png";
+			} else if (desc.contains("clouds")) {
+				image = "cloud.png";
+			} else if (desc.contains("rain")) {
+				image = "rain.png";
+			} else if (desc.contains("snow")) {
+				image = "snow.png";
+			} else if (desc.contains("mist")) {
+				image = "mist.png";
+			} else {
+				image = "thunder.png";
+			}
+			textAreaToday.append("\nRight now:\n" + celsius + " C° \n" + "\n\n");
+			/*CalendarPanel.class.getResource("/gui/cloud.png")));
+											("/gui/images/" + image)));*/
+			
+			lblWeatherIcon.setIcon(new ImageIcon(CalendarPanel.class.getResource("/gui/" + image)));
+		} else if (date.contains(currentDate) && c < 3) {
+			textAreaToday.append(stime + "\n" + celsius + " C° \n" + desc + "\n\n");
+		}
+		else if (!date.contains(currentDate) && date.contains("12:00:00")) {
+			textAreaNext.append("\n\n" + sdato + "\n" + celsius + " C° \n" + desc);
+
+		}
+		
+		//textpane.setText(date + desc + celsius + qotd);
+
+	}
 }

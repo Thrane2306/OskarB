@@ -3,11 +3,12 @@ package logic;
 import shared.Push;
 import gui.MyFrame;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Switch {
 	public static String switchMethod(String choose, String arg1, String arg2) throws Exception {
-		String overallID, calendarName, userName, email, password, json, cbsID, answer = null;
+		String overallID, calendarName, userName, email, password, json, cbsID, newpw, answer = null;
 
 		switch (choose) {
 		case "createCalendar":
@@ -37,6 +38,13 @@ public class Switch {
 			System.out.println(json);
 			answer = Push.push(json);
 			break;
+			
+		case "addUser":
+			overallID = "addUser";
+			email = arg1;
+			password = arg2;
+			answer = Push.push(JSONStrings.addUser(overallID, email, password));
+			break;
 
 		case "logIn":
 			overallID = "logIn";
@@ -50,12 +58,25 @@ public class Switch {
 			cbsID = arg1;
 			answer = Push.push(JSONStrings.getCalendar(overallID, cbsID));
 			break;
+		case "getQuote":
+			overallID = "getQuote";
+			answer = Push.push(JSONStrings.getQuote());
+			break;
+
 		case "getWeather":
-			
 			answer = Push.push(JSONStrings.getWeather());
 			break;
+		
 		}
 		
+		return answer;
+	}
+
+	public static String createEvent(String location, String createdBy,
+			ArrayList<String> start, ArrayList<String> end, String name,
+			String text) throws Exception{
+		String answer = null;
+		answer = Push.push(JSONStrings.createEvent(location, createdBy, start, end, name, text));
 		return answer;
 	}
 }

@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Rectangle;
 
 import javax.swing.JLabel;
@@ -29,6 +30,7 @@ public class CalendarLogin extends JPanel {
 	private JPasswordField passwordField;
 	private static String answer;
 	public static User currentUser;
+	private static JLabel lblLogStatus;
 	//public static CalendarTest cT ;
 
 	public CalendarLogin() {
@@ -54,21 +56,15 @@ public class CalendarLogin extends JPanel {
 		lblPassword.setBounds(528, 363, 150, 16);
 		panel.add(lblPassword);
 
-		CalBut but = new CalBut();
-		but.setBounds(528, 425, 150, 70);
-		panel.add(but);
-		but.setText("OK");
+		CalBut butOk = new CalBut();
+		butOk.setBounds(528, 425, 150, 70);
+		panel.add(butOk);
+		butOk.setText("OK");
 		// JButton btnOk = new JButton("OK");
-		but.addActionListener(new ActionListener() {
+		butOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					WeatherTest test = new WeatherTest();
-					//System.out.println(answer);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				//Login();
+			
+				Login();
 			}
 		});
 		
@@ -76,15 +72,31 @@ public class CalendarLogin extends JPanel {
 		passwordField.setBounds(528, 392, 150, 22);
 		panel.add(passwordField);
 		
+		lblLogStatus = new JLabel("");
+		lblLogStatus.setBounds(528, 525, 150, 14);
+		panel.add(lblLogStatus);
+
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(CalendarLogin.class
 				.getResource("/gui/CBS logo.png")));
 		lblNewLabel.setBounds(327, -13, 646, 278);
 		panel.add(lblNewLabel);
-
+		
+		JButton butnewUser = new JButton("New user?");
+		butnewUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				lblLogStatus.setText("");
+				MyFrame.GUI.show(MyFrame.card, "newUser");
+			}
+		});
+		butnewUser.setBounds(528, 550, 150, 23);
+		panel.add(butnewUser);
+		
+	
 	}
 	public void Login(){
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		String username = userTextField.getText();
 		char[] password = passwordField.getPassword();
 		String passwordString = new String(password);
@@ -98,20 +110,40 @@ public class CalendarLogin extends JPanel {
 
 		switch (answer) {
 		case "0":
+			
 			currentUser = new User();
 			currentUser.setUsername(username);
-			userTextField.setText("");
-			passwordField.setText("");
+			//userTextField.setText("");
+			//passwordField.setText("");
 			calPal = new CalendarPanel();
-			
+			reset();
 			/*cT = new CalendarTest();
 			cT.setBorder(new LineBorder(Color.BLACK));
 			cT.setForeground(Color.BLACK);
 			cT.setBounds(0, 0, 856, 677);
 			calPal.add(cT);*/
+			reset();
 			MyFrame.card.add("calPal", calPal);
 			MyFrame.GUI.show(MyFrame.card, "calPal");
+		case "1":
+			reset();
+			lblLogStatus.setText("Email not found!");
+			break;
+		case "2": 
+			reset();
+			lblLogStatus.setText("User is inactive");
+			break;
+		case "3": 
+			reset();
+			lblLogStatus.setText("Wrong password");
+			break;
 		}
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+	public void reset() {
+		userTextField.setText("");
+		passwordField.setText("");
+		lblLogStatus.setText("");
 	}
 	}
 	

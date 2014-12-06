@@ -36,20 +36,20 @@ public class CBSTEST {
         
         for (Event event : calendarData) {
         	
-        	String Smonth =  event.getStart().get(1);
+     /*   	String Smonth =  event.getStart().get(1);
         	int newSmonth = Integer.valueOf(Smonth);
         	 event.getStart().set(1, "" + ++newSmonth);
         	 
         	 String Emonth =  event.getEnd().get(1);
          	int newEmonth = Integer.valueOf(Emonth);
-         	 event.getEnd().set(1, "" + ++newEmonth);
+         	 event.getEnd().set(1, "" + ++newEmonth);*/
         	
 
         	//System.out.println(event.getDescription());
         	//System.out.println(event.getType());
         	//System.out.println(event.getStart());
         	//System.out.println(event.getEnd());
-        	CalendarPanel.load(event.getDescription(), event.getType(), event.getStart(), event.getEnd());
+        	CalendarPanel.load(event.getDescription(), event.getType(), event.getStart(), event.getEnd(), event.getLocation());
 			//System.out.println(event.getStart());
 		}
 	} catch (Exception e) {
