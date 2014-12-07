@@ -34,26 +34,25 @@ import javax.swing.SwingConstants;
 @SuppressWarnings("serial")
 public class CalendarPanel extends JPanel {
 	public static JPanel panelOpt, panel, cT, panelDate;
-	//public static CalendarTest cT;
 	@SuppressWarnings("unused")
 	private JButton btnSettings;
-	
+
 	static Calendar c = Calendar.getInstance();
 	static DateFormat df = new SimpleDateFormat("EEE dd/MM");
 	static DateFormat current = new SimpleDateFormat("YYYY-MM-dd");
 	@SuppressWarnings("unused")
-	private static JLabel lblMonth, lblMandag,lblOns, lblMan, lblTir, lblTor, lblFre, lblLor, lblSon, lblToday, lblQuote, lblWeatherIcon;
-	
+	private static JLabel lblMonth, lblMandag, lblOns, lblMan, lblTir, lblTor,
+			lblFre, lblLor, lblSon, lblToday, lblQuote, lblWeatherIcon;
+
 	@SuppressWarnings("unused")
 	private JTable table;
 	private static String result, result1, result2;
 	private static String currentDate;
 	private static JTextArea textAreaToday, textAreaNext;
 	static JLabel[] Eventlbls, label;
-	private static CalBut nxtWeek, prevWeek,btnnewEvent, btnLogout;
+	private static CalBut nxtWeek, prevWeek, btnnewEvent, btnLogout;
 	static JLabel bullseye;
 	private JLabel lblNewLabel;
-	
 
 	public CalendarPanel() {
 		setBackground(Color.WHITE);
@@ -62,7 +61,6 @@ public class CalendarPanel extends JPanel {
 		currentDate = current.format(c.getTime());
 		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 		c.get(Calendar.WEEK_OF_YEAR);
-	
 
 		panelOpt = new JPanel();
 		panelOpt.setForeground(Color.BLACK);
@@ -71,43 +69,34 @@ public class CalendarPanel extends JPanel {
 		panelOpt.setBounds(8, 13, 211, 677);
 		add(panelOpt);
 		panelOpt.setLayout(null);
-		
+
 		lblToday = new JLabel("Weather Today");
 		lblToday.setHorizontalAlignment(SwingConstants.CENTER);
 		lblToday.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblToday.setBounds(10, 11, 200, 45);
 		panelOpt.add(lblToday);
-		
+
 		lblWeatherIcon = new JLabel("");
 		lblWeatherIcon.setBounds(137, 75, 64, 53);
 		panelOpt.add(lblWeatherIcon);
-		
+
 		textAreaToday = new JTextArea();
 		textAreaToday.setEditable(false);
 		textAreaToday.setBounds(10, 45, 200, 246);
 		panelOpt.add(textAreaToday);
-		
+
 		JLabel lblNextFour = new JLabel("Weather for the next 4 days");
 		lblNextFour.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNextFour.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNextFour.setBounds(10, 302, 200, 33);
 		panelOpt.add(lblNextFour);
-		
+
 		textAreaNext = new JTextArea();
 		textAreaNext.setEditable(false);
 		textAreaNext.setFont(new Font("Monospaced", Font.PLAIN, 11));
 		textAreaNext.setBounds(10, 346, 200, 320);
 		panelOpt.add(textAreaNext);
-		
-		
-	
-		
-		/*cT = new CalendarTest();
-		cT.setBorder(new LineBorder(Color.BLACK));
-		cT.setForeground(Color.BLACK);
-		cT.setBounds(0, 0, 856, 677);
-		panelCal.add(cT);*/
-		
+
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(new LineBorder(Color.BLACK));
@@ -115,9 +104,6 @@ public class CalendarPanel extends JPanel {
 		panel.setBounds(8, 703, 1160, 197);
 		add(panel);
 
-		
-		//c.get(Calendar.WEEK_OF_YEAR);
-		
 		btnLogout = new CalBut();
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -130,7 +116,7 @@ public class CalendarPanel extends JPanel {
 		btnLogout.setText("Logout");
 		btnLogout.setBounds(1032, 11, 118, 37);
 		panel.add(btnLogout);
-		
+
 		btnnewEvent = new CalBut();
 		btnnewEvent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -140,29 +126,25 @@ public class CalendarPanel extends JPanel {
 		btnnewEvent.setText("Create personal event");
 		btnnewEvent.setBounds(680, 11, 169, 37);
 		panel.add(btnnewEvent);
-		
-		
-		
+
 		cT = new JPanel();
 		cT.setBounds(new Rectangle(312, 114, 856, 576));
 		cT.setBackground(Color.WHITE);
 		cT.setLayout(null);
 		add(cT);
-		
+
 		panelDate = new JPanel();
 		panelDate.setBackground(Color.WHITE);
 		panelDate.setBounds(312, 13, 833, 90);
 		panelDate.setLayout(null);
 		add(panelDate);
 
-		
-		
 		lblMan = new JLabel();
 		lblMan.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		lblMan.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblMan.setBounds(0, 54, 119, 36);
 		panelDate.add(lblMan);
-		
+
 		lblTir = new JLabel();
 		lblTir.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		lblTir.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -181,7 +163,7 @@ public class CalendarPanel extends JPanel {
 		lblTor.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblTor.setBounds(357, 54, 119, 36);
 		panelDate.add(lblTor);
-		
+
 		lblFre = new JLabel();
 		lblFre.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		lblFre.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -200,23 +182,21 @@ public class CalendarPanel extends JPanel {
 		lblSon.setBounds(714, 54, 119, 36);
 		panelDate.add(lblSon);
 
-		
-		
 		nxtWeek = new CalBut();
 		nxtWeek.setText("Next week");
 		nxtWeek.setBounds(500, 11, 270, 36);
 		panelDate.add(nxtWeek);
-	
+
 		prevWeek = new CalBut();
 		prevWeek.setText("Previous");
 		prevWeek.setBounds(10, 11, 270, 36);
 		panelDate.add(prevWeek);
-		
+
 		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 
 		lblMan.setText(df.format(c.getTime()));
 		c.add(Calendar.DATE, 1);
-			
+
 		lblTir.setText(df.format(c.getTime()));
 		c.add(Calendar.DATE, 1);
 
@@ -233,28 +213,26 @@ public class CalendarPanel extends JPanel {
 		c.add(Calendar.DATE, 1);
 
 		lblSon.setText(df.format(c.getTime()));
-		
+
 		bullseye = new JLabel("");
 		bullseye.setBounds(357, 29, 46, 14);
 		panelDate.add(bullseye);
 		c.add(Calendar.DATE, 1);
-		
-		
-		
-		
-		lblNewLabel = new JLabel("<html>" + "8:00" + "<br><br>" + "9:00" + "<br><br>" + "10:00" + "<br><br>" + "11:00" + "<br><br>" + "12:00" + "<br><br>" + 
-		"13:00" + "<br><br>" + "14:00" + "<br><br>" + "15:00" + "<br><br>" + "16:00" + "<br><br>" + "17:00" + "<br><br>" + "18:00" + "<br><br>"
-				+ "19:00" + "<br<br>" + "20:00" + "<br><br>" + "21:00" + "<br><br>" + "22:00");
+
+		lblNewLabel = new JLabel("<html>" + "8:00" + "<br><br>" + "9:00"
+				+ "<br><br>" + "10:00" + "<br><br>" + "11:00" + "<br><br>"
+				+ "12:00" + "<br><br>" + "13:00" + "<br><br>" + "14:00"
+				+ "<br><br>" + "15:00" + "<br><br>" + "16:00" + "<br><br>"
+				+ "17:00" + "<br><br>" + "18:00" + "<br><br>" + "19:00"
+				+ "<br<br>" + "20:00" + "<br><br>" + "21:00" + "<br><br>"
+				+ "22:00");
 		lblNewLabel.setVerticalTextPosition(SwingConstants.TOP);
 		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel.setBounds(229, 180, 73, 510);
 		add(lblNewLabel);
-		
 
-		
-		
 		prevWeek.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				c.add(Calendar.DATE, -1);
@@ -278,18 +256,17 @@ public class CalendarPanel extends JPanel {
 				c.add(Calendar.DATE, -1);
 				lblMan.setText(df.format(c.getTime()));
 				c.get(Calendar.WEEK_OF_YEAR);
-				CBSTEST preWeek = new CBSTEST(CalendarLogin.currentUser.getUsername());
+				CBSTEST preWeek = new CBSTEST(CalendarLogin.currentUser
+						.getUsername());
 			}
 		});
 
-	
-		
 		nxtWeek.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				c.get(Calendar.WEEK_OF_YEAR);
 				lblMan.setText(df.format(c.getTime()));
 				c.add(Calendar.DATE, 1);
-				
+
 				lblTir.setText(df.format(c.getTime()));
 				c.add(Calendar.DATE, 1);
 
@@ -308,11 +285,12 @@ public class CalendarPanel extends JPanel {
 				lblSon.setText(df.format(c.getTime()));
 				c.add(Calendar.DATE, 1);
 
-				CBSTEST nextWeek = new CBSTEST(CalendarLogin.currentUser.getUsername());
+				CBSTEST nextWeek = new CBSTEST(CalendarLogin.currentUser
+						.getUsername());
 
 			}
 		});
-		
+
 		CBSTEST load = new CBSTEST(CalendarLogin.currentUser.getUsername());
 		WeatherTest weather = new WeatherTest();
 		String QOTD = null;
@@ -320,7 +298,7 @@ public class CalendarPanel extends JPanel {
 			QOTD = Switch.switchMethod("getQuote", null, null);
 		} catch (Exception e1) {
 			e1.printStackTrace();
-		}	
+		}
 		lblQuote = new JLabel("");
 		lblQuote.setFocusable(false);
 		lblQuote.setText("\"" + QOTD + "\"");
@@ -328,11 +306,9 @@ public class CalendarPanel extends JPanel {
 		lblQuote.setBounds(10, 142, 1140, 44);
 		panel.add(lblQuote);
 	}
-		
-public static void drawBorders(){
-	
-		
-		
+
+	public static void drawBorders() {
+
 		JLabel lblTirsdag = new JLabel("");
 		lblTirsdag.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblTirsdag.setBounds(0, 74, 119, 502);
@@ -367,14 +343,8 @@ public static void drawBorders(){
 		lblMandag.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblMandag.setBounds(714, 74, 119, 502);
 		cT.add(lblMandag);
-		
-		
-		
-		
 
 	}
-
-		
 
 	static void load(String desc, String type, ArrayList<String> start,
 			ArrayList<String> end, String loc, String id) {
@@ -387,9 +357,7 @@ public static void drawBorders(){
 		try {
 			date = originalFormat.parse(string);
 			result = targetFormat.format(date);
-			System.out.println(string + "----" + date + "-------"  + result +    "----"  + c.get(Calendar.YEAR));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -402,23 +370,19 @@ public static void drawBorders(){
 		SimpleDateFormat tarFormat = new SimpleDateFormat("w");
 		SimpleDateFormat tarFor2 = new SimpleDateFormat("u");
 		String dateInString = listString;
-		//System.out.println(dateInString);
 		Date date1;
 		try {
 			date1 = orgFormatter.parse(dateInString);
-			// date2 = orgFormatter.parse(dateInString);
 			result2 = tarFor2.format(date1);
 			result1 = tarFormat.format(date1);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		int counter = 0;
-		//System.out.println(desc + "=" + result + "=" + result1 + "---" + string);
 		if (result.equals(result1)) {
 
 			counter++;
-			
+
 			Integer weekDay = Integer.valueOf(result2);
 			Integer sH = Integer.valueOf(start.get(3));
 			Integer sM = Integer.valueOf(start.get(4));
@@ -430,22 +394,22 @@ public static void drawBorders(){
 			int tH = (eH - sH) * 60;
 			int tTM = eM - sM;
 			float total = tH + tTM;
-		//	float total = (eH * 60) + eM - (sH * 60 + sM);
 			float delAfHeleDagen = (total / 840);
 			float aP = 502 * delAfHeleDagen;
 			int height = Math.round(aP);
 
 			int width = 118;
-			
-			setLabels(1, 1, width, height, desc, weekDay, counter, sH, type, sM, eH, eM, loc, id);
 
+			setLabels(1, 1, width, height, desc, weekDay, counter, sH, type,
+					sM, eH, eM, loc, id);
 
 		}
 
 	}
 
 	public static void setLabels(int x, int y, int w, int h, String desc,
-			int weekDay, int c, int sT, String type, int sM, int eT, int eM, String loc, String id) {
+			int weekDay, int c, int sT, String type, int sM, int eT, int eM,
+			String loc, String id) {
 		int dayP = 0;
 
 		if (weekDay == 1) {
@@ -470,19 +434,15 @@ public static void drawBorders(){
 		int starttidmin = (sT * 60) + sM;
 		float as = starttidmin - 480;
 		float ad = as / 840;
-		//float a = sT - 800;
-		//float b = a / 1400;
 		float e = ad * 502 + 74;
 		int d = Math.round(e);
-		
-		
 
 		Eventlbls = new JLabel[30];
 		for (int i = 0; i < c; i++)
 			Eventlbls[i] = new JLabel();
 		Eventlbls[0].setBounds(10, 64, 119, 60);
 		for (int i = 0; i < c; i++) {
-			
+
 			final String arg1 = desc;
 			final String arg2 = type;
 			final String nid = id;
@@ -490,59 +450,50 @@ public static void drawBorders(){
 			Eventlbls[i].setBounds(dayP, d, w, h);
 			Eventlbls[i].setOpaque(true);
 			Eventlbls[i].setCursor(new Cursor(Cursor.HAND_CURSOR));
-			Eventlbls[i].addMouseListener(new MouseAdapter()
-			{
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				try {
-					System.out.println("mouseclicked" + nid);
-					String note = Switch.switchMethod("getNote", nid, "");
-					System.out.println("fik note");
-					System.out.println(note);
-					@SuppressWarnings("unused")
-					EventInfo infoframe = new EventInfo(arg1, arg2, nid, note);
-				} catch (Exception e1) {
-					e1.printStackTrace();
+			Eventlbls[i].addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					try {
+						System.out.println("mouseclicked" + nid);
+						String note = Switch.switchMethod("getNote", nid, "");
+						System.out.println("fik note");
+						System.out.println(note);
+						@SuppressWarnings("unused")
+						EventInfo infoframe = new EventInfo(arg1, arg2, nid,
+								note);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+
 				}
-				//@SuppressWarnings("unused")
-				//EventInfoFrame infoframe = new EventInfoFrame(arg1, arg2, note);
-			}
-		});
-			
+			});
 
 			if (desc.contains("Makro")) {
 				Eventlbls[i].setBackground(new Color(0, 255, 0));
 
 			} else if (desc.contains("Virksomhedens")) {
 				Eventlbls[i].setBackground(new Color(102, 102, 255));
-			} else if (desc.contains("Ledelse af IS - forandring, innovation og viden")) {
+			} else if (desc
+					.contains("Ledelse af IS - forandring, innovation og viden")) {
 				Eventlbls[i].setBackground(new Color(255, 102, 255));
 			} else if (desc.contains("systemer")) {
 				Eventlbls[i].setBackground(new Color(255, 153, 51));
 			} else {
 				Eventlbls[i].setBackground(Color.YELLOW);
 			}
-			Eventlbls[i]
-					.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
-			Eventlbls[i].setText("<html>" + desc + "<br>" + sT + ":" + sSM + "-" + eT + ":" + sEM + "@" + loc);
-			
-			
-			cT.add(Eventlbls[i]);
+			Eventlbls[i].setFont(new Font("Lucida Grande", Font.PLAIN, 11));
+			Eventlbls[i].setText("<html>" + desc + "<br>" + sT + ":" + sSM
+					+ "-" + eT + ":" + sEM + "@" + loc);
 
+			cT.add(Eventlbls[i]);
 
 			cT.repaint();
 		}
-		
-	
 
+	}
 
-
-		//setVisible(true);
-
-	
-}
-	
-	public static void weatherLoad(String date, String desc, String celsius, int c) throws ParseException{
+	public static void weatherLoad(String date, String desc, String celsius,
+			int c) throws ParseException {
 		SimpleDateFormat original = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		SimpleDateFormat time = new SimpleDateFormat("HH:mm");
 		SimpleDateFormat dato = new SimpleDateFormat("dd/MM");
@@ -551,7 +502,6 @@ public static void drawBorders(){
 		String sdato = dato.format(dtime);
 		String image = null;
 
-		
 		if (date.contains(currentDate) && c == 0) {
 			if (desc.contains("sky")) {
 				image = "sun.png";
@@ -566,20 +516,18 @@ public static void drawBorders(){
 			} else {
 				image = "thunder.png";
 			}
-			textAreaToday.append("\nRight now:\n" + celsius + " C° \n" + "\n\n");
-			/*CalendarPanel.class.getResource("/gui/cloud.png")));
-											("/gui/images/" + image)));*/
-			
-			lblWeatherIcon.setIcon(new ImageIcon(CalendarPanel.class.getResource("/gui/" + image)));
+			textAreaToday
+					.append("\nRight now:\n" + celsius + " C° \n" + "\n\n");
+			lblWeatherIcon.setIcon(new ImageIcon(CalendarPanel.class
+					.getResource("/gui/" + image)));
 		} else if (date.contains(currentDate) && c < 3) {
-			textAreaToday.append(stime + "\n" + celsius + " C° \n" + desc + "\n\n");
-		}
-		else if (!date.contains(currentDate) && date.contains("12:00:00")) {
-			textAreaNext.append("\n\n" + sdato + "\n" + celsius + " C° \n" + desc);
+			textAreaToday.append(stime + "\n" + celsius + " C° \n" + desc
+					+ "\n\n");
+		} else if (!date.contains(currentDate) && date.contains("12:00:00")) {
+			textAreaNext.append("\n\n" + sdato + "\n" + celsius + " C° \n"
+					+ desc);
 
 		}
-		
-		//textpane.setText(date + desc + celsius + qotd);
 
 	}
 }

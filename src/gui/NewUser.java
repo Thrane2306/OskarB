@@ -98,11 +98,12 @@ public class NewUser extends JPanel {
 					lblMsg.setText("Passwords don't match.");
 					clear();
 					break;
-			}
+				}
 			}
 		});
 
 	}
+
 	public int addUser() {
 		String username = textField.getText();
 		char[] newpw = PWField.getPassword();
@@ -125,9 +126,10 @@ public class NewUser extends JPanel {
 			case "2":
 				return 2;
 			}
-		} return 3;
+		}
+		return 3;
 	}
-	
+
 	public void clear() {
 		PWField.setText("");
 		textField.setText("");

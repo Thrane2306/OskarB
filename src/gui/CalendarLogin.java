@@ -31,7 +31,6 @@ public class CalendarLogin extends JPanel {
 	private static String answer;
 	public static User currentUser;
 	private static JLabel lblLogStatus;
-	//public static CalendarTest cT ;
 
 	public CalendarLogin() {
 		setBounds(new Rectangle(0, 0, 1180, 900));
@@ -60,29 +59,27 @@ public class CalendarLogin extends JPanel {
 		butOk.setBounds(528, 425, 150, 70);
 		panel.add(butOk);
 		butOk.setText("OK");
-		// JButton btnOk = new JButton("OK");
 		butOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+
 				Login();
 			}
 		});
-		
+
 		passwordField = new JPasswordField();
 		passwordField.setBounds(528, 392, 150, 22);
 		panel.add(passwordField);
-		
+
 		lblLogStatus = new JLabel("");
 		lblLogStatus.setBounds(528, 525, 150, 14);
 		panel.add(lblLogStatus);
 
-
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(CalendarLogin.class
-				.getResource("/gui/CBS logo.png")));
+				.getResource("/gui/images/CBS logo.png")));
 		lblNewLabel.setBounds(327, -13, 646, 278);
 		panel.add(lblNewLabel);
-		
+
 		JButton butnewUser = new JButton("New user?");
 		butnewUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -92,36 +89,27 @@ public class CalendarLogin extends JPanel {
 		});
 		butnewUser.setBounds(528, 550, 150, 23);
 		panel.add(butnewUser);
-		
-	
+
 	}
-	public void Login(){
+
+	public void Login() {
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		String username = userTextField.getText();
 		char[] password = passwordField.getPassword();
 		String passwordString = new String(password);
 
 		try {
-			answer = Switch.switchMethod("logIn", username,
-					passwordString);
+			answer = Switch.switchMethod("logIn", username, passwordString);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 
 		switch (answer) {
 		case "0":
-			
+
 			currentUser = new User();
 			currentUser.setUsername(username);
-			//userTextField.setText("");
-			//passwordField.setText("");
 			calPal = new CalendarPanel();
-			reset();
-			/*cT = new CalendarTest();
-			cT.setBorder(new LineBorder(Color.BLACK));
-			cT.setForeground(Color.BLACK);
-			cT.setBounds(0, 0, 856, 677);
-			calPal.add(cT);*/
 			reset();
 			MyFrame.card.add("calPal", calPal);
 			MyFrame.GUI.show(MyFrame.card, "calPal");
@@ -129,21 +117,21 @@ public class CalendarLogin extends JPanel {
 			reset();
 			lblLogStatus.setText("Email not found!");
 			break;
-		case "2": 
+		case "2":
 			reset();
 			lblLogStatus.setText("User is inactive");
 			break;
-		case "3": 
+		case "3":
 			reset();
 			lblLogStatus.setText("Wrong password");
 			break;
 		}
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
+
 	public void reset() {
 		userTextField.setText("");
 		passwordField.setText("");
 		lblLogStatus.setText("");
 	}
-	}
-	
+}

@@ -3,10 +3,6 @@ package logic;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- * Created by jesperbruun on 10/10/14.
- * Til hver specifik event bliver de defineret saaledes.
- */
 public class Weather {
     private String celsius;
     private String desc;

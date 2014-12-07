@@ -23,7 +23,7 @@ public class EventInfo {
 	private JLabel lblMsg;
 
 	public EventInfo(String name, String loc, String id, String note) {
-		
+
 		final JFrame eventInfo = new JFrame();
 		eventInfo.setVisible(true);
 		eventInfo.setTitle("Event Info");
@@ -104,11 +104,11 @@ public class EventInfo {
 						System.out.println(answer);
 						if (answer.equals("0")) {
 							lblMsg.setText("Note updated!");
-							Thread.sleep(2000);
+							Thread.sleep(1000);
 							eventInfo.dispose();
 						} else if (answer.equals("1")) {
 							lblMsg.setText("Note added!");
-							Thread.sleep(2000);
+							Thread.sleep(1000);
 							eventInfo.dispose();
 						}
 					} catch (Exception e1) {
@@ -119,16 +119,18 @@ public class EventInfo {
 		});
 		btnSave.setBounds(267, 231, 107, 29);
 		infoPanel.add(btnSave);
-		
+
 		JButton delEvent = new JButton("Delete event");
 		delEvent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String eventid = eventId.getText();
 				try {
-					String answer = Switch.switchMethod("deleteEvent", eventid, "");
+					String answer = Switch.switchMethod("deleteEvent", eventid,
+							"");
 					if (answer.equals("0")) {
 						@SuppressWarnings("unused")
-						CBSTEST change = new CBSTEST(CalendarLogin.currentUser.getUsername());
+						CBSTEST change = new CBSTEST(CalendarLogin.currentUser
+								.getUsername());
 						eventInfo.dispose();
 					} else if (answer.equals("1")) {
 						lblMsg.setText("Couldn't delete event.");

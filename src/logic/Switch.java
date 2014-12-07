@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Switch {
-	public static String switchMethod(String choose, String arg1, String arg2) throws Exception {
-		String overallID, calendarName, userName, email, password, note, json, cbsID, eventid, newpw, answer = null;
+	public static String switchMethod(String choose, String arg1, String arg2)
+			throws Exception {
+		String overallID, calendarName, userName, email, password, note, json, cbsID, eventid, answer = null;
 
 		switch (choose) {
 		case "createCalendar":
@@ -38,7 +39,7 @@ public class Switch {
 			System.out.println(json);
 			answer = Push.push(json);
 			break;
-			
+
 		case "addUser":
 			overallID = "addUser";
 			email = arg1;
@@ -52,7 +53,7 @@ public class Switch {
 			password = arg2;
 			answer = Push.push(JSONStrings.login(overallID, email, password));
 			break;
-		
+
 		case "getCalendar":
 			overallID = "getCalendar";
 			cbsID = arg1;
@@ -81,17 +82,18 @@ public class Switch {
 		case "getWeather":
 			answer = Push.push(JSONStrings.getWeather());
 			break;
-		
+
 		}
-		
+
 		return answer;
 	}
 
 	public static String createEvent(String location, String createdBy,
 			ArrayList<String> start, ArrayList<String> end, String name,
-			String text) throws Exception{
+			String text) throws Exception {
 		String answer = null;
-		answer = Push.push(JSONStrings.createEvent(location, createdBy, start, end, name, text));
+		answer = Push.push(JSONStrings.createEvent(location, createdBy, start,
+				end, name, text));
 		return answer;
 	}
 }
