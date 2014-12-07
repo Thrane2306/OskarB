@@ -10,9 +10,7 @@ import java.net.Socket;
 
 public class Push {
 	private static Encryption cryp = new Encryption();
-	//static MainMenu menu = new MainMenu();
 	public static String push(String json) throws Exception {
-		String modifiedSentence;
 
 		Socket clientSocket = new Socket("localhost", 8888);
 		DataOutputStream outToServer = new DataOutputStream(
