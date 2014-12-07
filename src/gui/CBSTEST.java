@@ -49,7 +49,7 @@ public class CBSTEST {
         	//System.out.println(event.getType());
         	//System.out.println(event.getStart());
         	//System.out.println(event.getEnd());
-        	CalendarPanel.load(event.getDescription(), event.getType(), event.getStart(), event.getEnd(), event.getLocation());
+        	CalendarPanel.load(event.getDescription(), event.getType(), event.getStart(), event.getEnd(), event.getLocation(), event.getEventid());
 			//System.out.println(event.getStart());
 		}
 	} catch (Exception e) {

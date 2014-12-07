@@ -41,4 +41,15 @@ public class JSONStrings {
 				+ "\"}";
 		return json;
 	}
+	public static String getEventNote(String eventID) {
+		String json = "{\"serialVersionUID\":1,\"overallID\":\""
+				+ "getNote" + "\",\"eventid\":\"" + eventID + "\"}";
+		return json;
+	}
+	
+	public static String saveEventNote(String eventID, String text) {
+		String json = "{\"serialVersionUID\":1,\"overallID\":\""
+				+ "saveNote" + "\",\"eventid\":\"" + eventID + "\",\"note\":\"" + text + "\"}";
+		return json;
+	}
 }

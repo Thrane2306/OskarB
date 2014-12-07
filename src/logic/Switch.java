@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Switch {
 	public static String switchMethod(String choose, String arg1, String arg2) throws Exception {
-		String overallID, calendarName, userName, email, password, json, cbsID, newpw, answer = null;
+		String overallID, calendarName, userName, email, password, note, json, cbsID, eventid, newpw, answer = null;
 
 		switch (choose) {
 		case "createCalendar":
@@ -57,6 +57,15 @@ public class Switch {
 			overallID = "getCalendar";
 			cbsID = arg1;
 			answer = Push.push(JSONStrings.getCalendar(overallID, cbsID));
+			break;
+		case "getNote":
+			eventid = arg1;
+			answer = Push.push(JSONStrings.getEventNote(eventid));
+			break;
+		case "saveNote":
+			eventid = arg1;
+			note = arg2;
+			answer = Push.push(JSONStrings.saveEventNote(eventid, note));
 			break;
 		case "getQuote":
 			overallID = "getQuote";

@@ -7,11 +7,14 @@ import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,7 +38,7 @@ public class CalendarPanel extends JPanel {
 	@SuppressWarnings("unused")
 	private JButton btnSettings;
 	
-	private static Calendar c = Calendar.getInstance();
+	static Calendar c = Calendar.getInstance();
 	static DateFormat df = new SimpleDateFormat("EEE dd/MM");
 	static DateFormat current = new SimpleDateFormat("YYYY-MM-dd");
 	@SuppressWarnings("unused")
@@ -58,7 +61,7 @@ public class CalendarPanel extends JPanel {
 		setLayout(null);
 		currentDate = current.format(c.getTime());
 		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-		
+		c.get(Calendar.WEEK_OF_YEAR);
 	
 
 		panelOpt = new JPanel();
@@ -113,7 +116,7 @@ public class CalendarPanel extends JPanel {
 		add(panel);
 
 		
-		
+		//c.get(Calendar.WEEK_OF_YEAR);
 		
 		btnLogout = new CalBut();
 		btnLogout.addActionListener(new ActionListener() {
@@ -154,7 +157,11 @@ public class CalendarPanel extends JPanel {
 
 		
 		
-
+		lblMan = new JLabel();
+		lblMan.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+		lblMan.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblMan.setBounds(0, 54, 119, 36);
+		panelDate.add(lblMan);
 		
 		lblTir = new JLabel();
 		lblTir.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
@@ -193,11 +200,7 @@ public class CalendarPanel extends JPanel {
 		lblSon.setBounds(714, 54, 119, 36);
 		panelDate.add(lblSon);
 
-		lblMan = new JLabel();
-		lblMan.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
-		lblMan.setBorder(new LineBorder(new Color(0, 0, 0)));
-		lblMan.setBounds(0, 54, 119, 36);
-		panelDate.add(lblMan);
+		
 		
 		nxtWeek = new CalBut();
 		nxtWeek.setText("Next week");
@@ -213,7 +216,7 @@ public class CalendarPanel extends JPanel {
 
 		lblMan.setText(df.format(c.getTime()));
 		c.add(Calendar.DATE, 1);
-
+			
 		lblTir.setText(df.format(c.getTime()));
 		c.add(Calendar.DATE, 1);
 
@@ -236,20 +239,7 @@ public class CalendarPanel extends JPanel {
 		panelDate.add(bullseye);
 		c.add(Calendar.DATE, 1);
 		
-		CBSTEST load = new CBSTEST(CalendarLogin.currentUser.getUsername());
-		WeatherTest weather = new WeatherTest();
-		String QOTD = null;
-		try {
-			QOTD = Switch.switchMethod("getQuote", null, null);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}	
-		lblQuote = new JLabel("");
-		lblQuote.setFocusable(false);
-		lblQuote.setText("\"" + QOTD + "\"");
-		lblQuote.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
-		lblQuote.setBounds(10, 142, 1140, 44);
-		panel.add(lblQuote);
+		
 		
 		
 		lblNewLabel = new JLabel("<html>" + "8:00" + "<br><br>" + "9:00" + "<br><br>" + "10:00" + "<br><br>" + "11:00" + "<br><br>" + "12:00" + "<br><br>" + 
@@ -287,6 +277,7 @@ public class CalendarPanel extends JPanel {
 
 				c.add(Calendar.DATE, -1);
 				lblMan.setText(df.format(c.getTime()));
+				c.get(Calendar.WEEK_OF_YEAR);
 				CBSTEST preWeek = new CBSTEST(CalendarLogin.currentUser.getUsername());
 			}
 		});
@@ -295,10 +286,10 @@ public class CalendarPanel extends JPanel {
 		
 		nxtWeek.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				c.get(Calendar.WEEK_OF_YEAR);
 				lblMan.setText(df.format(c.getTime()));
 				c.add(Calendar.DATE, 1);
-
+				
 				lblTir.setText(df.format(c.getTime()));
 				c.add(Calendar.DATE, 1);
 
@@ -321,6 +312,21 @@ public class CalendarPanel extends JPanel {
 
 			}
 		});
+		
+		CBSTEST load = new CBSTEST(CalendarLogin.currentUser.getUsername());
+		WeatherTest weather = new WeatherTest();
+		String QOTD = null;
+		try {
+			QOTD = Switch.switchMethod("getQuote", null, null);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}	
+		lblQuote = new JLabel("");
+		lblQuote.setFocusable(false);
+		lblQuote.setText("\"" + QOTD + "\"");
+		lblQuote.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		lblQuote.setBounds(10, 142, 1140, 44);
+		panel.add(lblQuote);
 	}
 		
 public static void drawBorders(){
@@ -371,7 +377,7 @@ public static void drawBorders(){
 		
 
 	static void load(String desc, String type, ArrayList<String> start,
-			ArrayList<String> end, String loc) {
+			ArrayList<String> end, String loc, String id) {
 
 		String string = lblMan.getText();
 
@@ -381,6 +387,7 @@ public static void drawBorders(){
 		try {
 			date = originalFormat.parse(string);
 			result = targetFormat.format(date);
+			System.out.println(string + "----" + date + "-------"  + result +    "----"  + c.get(Calendar.YEAR));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -395,8 +402,8 @@ public static void drawBorders(){
 		SimpleDateFormat tarFormat = new SimpleDateFormat("w");
 		SimpleDateFormat tarFor2 = new SimpleDateFormat("u");
 		String dateInString = listString;
+		//System.out.println(dateInString);
 		Date date1;
-		Date date2;
 		try {
 			date1 = orgFormatter.parse(dateInString);
 			// date2 = orgFormatter.parse(dateInString);
@@ -407,10 +414,11 @@ public static void drawBorders(){
 			e.printStackTrace();
 		}
 		int counter = 0;
+		//System.out.println(desc + "=" + result + "=" + result1 + "---" + string);
 		if (result.equals(result1)) {
 
 			counter++;
-
+			
 			Integer weekDay = Integer.valueOf(result2);
 			Integer sH = Integer.valueOf(start.get(3));
 			Integer sM = Integer.valueOf(start.get(4));
@@ -422,13 +430,14 @@ public static void drawBorders(){
 			int tH = (eH - sH) * 60;
 			int tTM = eM - sM;
 			float total = tH + tTM;
+		//	float total = (eH * 60) + eM - (sH * 60 + sM);
 			float delAfHeleDagen = (total / 840);
 			float aP = 502 * delAfHeleDagen;
 			int height = Math.round(aP);
 
 			int width = 118;
 			
-			setLabels(1, 1, width, height, desc, weekDay, counter, sH, type, sM, eH, eM, loc);
+			setLabels(1, 1, width, height, desc, weekDay, counter, sH, type, sM, eH, eM, loc, id);
 
 
 		}
@@ -436,7 +445,7 @@ public static void drawBorders(){
 	}
 
 	public static void setLabels(int x, int y, int w, int h, String desc,
-			int weekDay, int c, int sT, String type, int sM, int eT, int eM, String loc) {
+			int weekDay, int c, int sT, String type, int sM, int eT, int eM, String loc, String id) {
 		int dayP = 0;
 
 		if (weekDay == 1) {
@@ -473,9 +482,31 @@ public static void drawBorders(){
 			Eventlbls[i] = new JLabel();
 		Eventlbls[0].setBounds(10, 64, 119, 60);
 		for (int i = 0; i < c; i++) {
+			
+			final String arg1 = desc;
+			final String arg2 = type;
+			final String nid = id;
 
 			Eventlbls[i].setBounds(dayP, d, w, h);
 			Eventlbls[i].setOpaque(true);
+			Eventlbls[i].setCursor(new Cursor(Cursor.HAND_CURSOR));
+			Eventlbls[i].addMouseListener(new MouseAdapter()
+			{
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					String note = Switch.switchMethod("getNote", nid, "");
+					System.out.println(note);
+					@SuppressWarnings("unused")
+					EventInfo infoframe = new EventInfo(arg1, arg2, nid, note);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				//@SuppressWarnings("unused")
+				//EventInfoFrame infoframe = new EventInfoFrame(arg1, arg2, note);
+			}
+		});
+			
 
 			if (desc.contains("Makro")) {
 				Eventlbls[i].setBackground(new Color(0, 255, 0));
