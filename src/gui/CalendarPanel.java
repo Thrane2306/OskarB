@@ -519,7 +519,7 @@ public class CalendarPanel extends JPanel {
 			textAreaToday
 					.append("\nRight now:\n" + celsius + " C° \n" + "\n\n");
 			lblWeatherIcon.setIcon(new ImageIcon(CalendarPanel.class
-					.getResource("/gui/" + image)));
+					.getResource("/gui/images/" + image)));
 		} else if (date.contains(currentDate) && c < 3) {
 			textAreaToday.append(stime + "\n" + celsius + " C° \n" + desc
 					+ "\n\n");
