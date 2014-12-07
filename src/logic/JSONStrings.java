@@ -44,12 +44,18 @@ public class JSONStrings {
 	public static String getEventNote(String eventID) {
 		String json = "{\"serialVersionUID\":1,\"overallID\":\""
 				+ "getNote" + "\",\"eventid\":\"" + eventID + "\"}";
+		System.out.println(json);
 		return json;
 	}
 	
 	public static String saveEventNote(String eventID, String text) {
 		String json = "{\"serialVersionUID\":1,\"overallID\":\""
 				+ "saveNote" + "\",\"eventid\":\"" + eventID + "\",\"note\":\"" + text + "\"}";
+		return json;
+	}
+	public static String deleteEvent(String eventID) {
+		String json = "{\"serialVersionUID\":1,\"overallID\":\""
+				+ "deleteEvent" + "\",\"eventid\":\"" + eventID + "\"}";
 		return json;
 	}
 }

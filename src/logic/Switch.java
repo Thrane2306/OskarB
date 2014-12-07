@@ -60,12 +60,18 @@ public class Switch {
 			break;
 		case "getNote":
 			eventid = arg1;
+			System.out.println(eventid);
 			answer = Push.push(JSONStrings.getEventNote(eventid));
+			System.out.println(answer);
 			break;
 		case "saveNote":
 			eventid = arg1;
 			note = arg2;
 			answer = Push.push(JSONStrings.saveEventNote(eventid, note));
+			break;
+		case "deleteEvent":
+			eventid = arg1;
+			answer = Push.push(JSONStrings.deleteEvent(eventid));
 			break;
 		case "getQuote":
 			overallID = "getQuote";

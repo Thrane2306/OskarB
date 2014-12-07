@@ -495,7 +495,9 @@ public static void drawBorders(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
+					System.out.println("mouseclicked" + nid);
 					String note = Switch.switchMethod("getNote", nid, "");
+					System.out.println("fik note");
 					System.out.println(note);
 					@SuppressWarnings("unused")
 					EventInfo infoframe = new EventInfo(arg1, arg2, nid, note);

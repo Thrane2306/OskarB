@@ -41,7 +41,7 @@ public class EventInfo {
 				eventInfo.dispose();
 			}
 		});
-		btnCancel.setBounds(115, 232, 117, 29);
+		btnCancel.setBounds(134, 231, 107, 29);
 		infoPanel.add(btnCancel);
 
 		JLabel lblEventName = new JLabel("Event Name: ");
@@ -104,8 +104,12 @@ public class EventInfo {
 						System.out.println(answer);
 						if (answer.equals("0")) {
 							lblMsg.setText("Note updated!");
+							Thread.sleep(2000);
+							eventInfo.dispose();
 						} else if (answer.equals("1")) {
 							lblMsg.setText("Note added!");
+							Thread.sleep(2000);
+							eventInfo.dispose();
 						}
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -113,8 +117,28 @@ public class EventInfo {
 				}
 			}
 		});
-		btnSave.setBounds(244, 232, 117, 29);
+		btnSave.setBounds(267, 231, 107, 29);
 		infoPanel.add(btnSave);
+		
+		JButton delEvent = new JButton("Delete event");
+		delEvent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String eventid = eventId.getText();
+				try {
+					String answer = Switch.switchMethod("deleteEvent", eventid, "");
+					if (answer.equals("0")) {
+						@SuppressWarnings("unused")
+						CBSTEST change = new CBSTEST(CalendarLogin.currentUser.getUsername());
+						eventInfo.dispose();
+					} else if (answer.equals("1")) {
+						lblMsg.setText("Couldn't delete event.");
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		delEvent.setBounds(17, 231, 107, 29);
+		infoPanel.add(delEvent);
 	}
-
 }
