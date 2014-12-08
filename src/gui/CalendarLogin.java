@@ -43,20 +43,20 @@ public class CalendarLogin extends JPanel {
 		panel.setLayout(null);
 
 		JLabel lblUsername = new JLabel("Username:");
-		lblUsername.setBounds(528, 299, 150, 16);
+		lblUsername.setBounds(503, 290, 124, 30);
 		panel.add(lblUsername);
 
 		userTextField = new JTextField();
-		userTextField.setBounds(528, 328, 150, 22);
+		userTextField.setBounds(503, 320, 200, 30);
 		panel.add(userTextField);
 		userTextField.setColumns(10);
 
 		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setBounds(528, 363, 150, 16);
+		lblPassword.setBounds(503, 360, 124, 30);
 		panel.add(lblPassword);
 
 		CalBut butOk = new CalBut();
-		butOk.setBounds(528, 425, 150, 70);
+		butOk.setBounds(528, 440, 150, 50);
 		panel.add(butOk);
 		butOk.setText("OK");
 		butOk.addActionListener(new ActionListener() {
@@ -67,7 +67,7 @@ public class CalendarLogin extends JPanel {
 		});
 
 		passwordField = new JPasswordField();
-		passwordField.setBounds(528, 392, 150, 22);
+		passwordField.setBounds(503, 390, 200, 30);
 		panel.add(passwordField);
 
 		lblLogStatus = new JLabel("");
@@ -80,15 +80,24 @@ public class CalendarLogin extends JPanel {
 		lblNewLabel.setBounds(327, -13, 646, 278);
 		panel.add(lblNewLabel);
 
-		JButton butnewUser = new JButton("New user?");
-		butnewUser.addActionListener(new ActionListener() {
+		//JButton butnewUser = new JButton("New user?");
+		CalBut butNewUser = new CalBut();
+		butNewUser.setBounds(528, 490, 150, 50);
+		butNewUser.setText("Sign up");
+		panel.add(butNewUser);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setIcon(new ImageIcon(CalendarLogin.class.getResource("/gui/images/10807359_10204460222859850_1008122537_o.jpg")));
+		lblNewLabel_1.setBounds(0, 257, 1193, 900);
+		panel.add(lblNewLabel_1);
+		
+		butNewUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				lblLogStatus.setText("");
 				MyFrame.GUI.show(MyFrame.card, "newUser");
 			}
 		});
-		butnewUser.setBounds(528, 550, 150, 23);
-		panel.add(butnewUser);
+		
 
 	}
 

@@ -1,5 +1,6 @@
 package gui;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -99,9 +100,9 @@ public class CalendarPanel extends JPanel {
 
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBorder(new LineBorder(Color.BLACK));
+		panel.setBorder(new LineBorder(Color.WHITE));
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(8, 703, 1160, 197);
+		panel.setBounds(8, 690, 1160, 210);
 		add(panel);
 
 		btnLogout = new CalBut();
@@ -114,7 +115,7 @@ public class CalendarPanel extends JPanel {
 			}
 		});
 		btnLogout.setText("Logout");
-		btnLogout.setBounds(1032, 11, 118, 37);
+		btnLogout.setBounds(980, 11, 150, 70);
 		panel.add(btnLogout);
 
 		btnnewEvent = new CalBut();
@@ -123,8 +124,8 @@ public class CalendarPanel extends JPanel {
 				CreateEvent newEvent = new CreateEvent();
 			}
 		});
-		btnnewEvent.setText("Create personal event");
-		btnnewEvent.setBounds(680, 11, 169, 37);
+		btnnewEvent.setText("Create Event");
+		btnnewEvent.setBounds(660, 11, 150, 70);
 		panel.add(btnnewEvent);
 
 		cT = new JPanel();
@@ -232,6 +233,11 @@ public class CalendarPanel extends JPanel {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel.setBounds(229, 180, 73, 510);
 		add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setIcon(new ImageIcon(CalendarLogin.class.getResource("/gui/images/10807359_10204460222859850_1008122537_o.jpg")));
+		lblNewLabel_1.setBounds(0, 257, 1193, 900);
+		add(lblNewLabel_1);
 
 		prevWeek.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
