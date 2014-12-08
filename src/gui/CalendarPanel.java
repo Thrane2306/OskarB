@@ -65,7 +65,7 @@ public class CalendarPanel extends JPanel {
 		panelOpt = new JPanel();
 		panelOpt.setForeground(Color.BLACK);
 		panelOpt.setBackground(Color.WHITE);
-		panelOpt.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panelOpt.setBorder(null);
 		panelOpt.setBounds(8, 13, 211, 677);
 		add(panelOpt);
 		panelOpt.setLayout(null);
@@ -305,6 +305,11 @@ public class CalendarPanel extends JPanel {
 		lblQuote.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
 		lblQuote.setBounds(10, 142, 1140, 44);
 		panel.add(lblQuote);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Morten\\Desktop\\background2.jpg"));
+		lblNewLabel.setBounds(0, 0, 1193, 900);
+		add(lblNewLabel);
 	}
 
 	public static void drawBorders() {

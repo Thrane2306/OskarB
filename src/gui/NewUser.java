@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import logic.Switch;
+import javax.swing.ImageIcon;
 
 public class NewUser extends JPanel {
 	private JTextField textField;
@@ -23,53 +24,67 @@ public class NewUser extends JPanel {
 	private static String answer;
 	static CalBut btnBack, btnCreate;
 	static JLabel lblMsg;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
 
 	public NewUser() {
 
 		setBackground(Color.WHITE);
 		setLayout(null);
 
-		JLabel lblUser = new JLabel("Username");
-		lblUser.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblUser.setBounds(10, 11, 124, 28);
+		JLabel lblUser = new JLabel("New username:");
+		lblUser.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblUser.setBounds(528, 206, 124, 28);
 		add(lblUser);
 
-		JLabel lblPW = new JLabel("Password");
-		lblPW.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblPW.setBounds(10, 50, 124, 28);
+		JLabel lblPW = new JLabel("New password:");
+		lblPW.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblPW.setBounds(528, 267, 124, 28);
 		add(lblPW);
 
-		JLabel lblPWRepeat = new JLabel("Repeat");
-		lblPWRepeat.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblPWRepeat.setBounds(10, 89, 124, 28);
+		JLabel lblPWRepeat = new JLabel("Repeat password:");
+		lblPWRepeat.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblPWRepeat.setBounds(528, 328, 124, 28);
 		add(lblPWRepeat);
 
 		textField = new JTextField();
-		textField.setBounds(240, 11, 200, 28);
+		textField.setBounds(528, 234, 150, 22);
 		add(textField);
 		textField.setColumns(10);
 
 		PWField = new JPasswordField();
-		PWField.setBounds(240, 50, 200, 28);
+		PWField.setBounds(528, 295, 150, 22);
 		add(PWField);
 
 		PWField2 = new JPasswordField();
-		PWField2.setBounds(240, 87, 200, 28);
+		PWField2.setBounds(528, 356, 150, 22);
 		add(PWField2);
 
 		btnBack = new CalBut();
 		btnBack.setText("Back");
-		btnBack.setBounds(10, 266, 89, 23);
+		btnBack.setBounds(10, 11, 89, 23);
 		add(btnBack);
 
 		btnCreate = new CalBut();
+		btnCreate.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnCreate.setText("Create");
-		btnCreate.setBounds(351, 266, 89, 23);
+		btnCreate.setBounds(552, 389, 100, 22);
 		add(btnCreate);
 
 		lblMsg = new JLabel("");
 		lblMsg.setBounds(215, 151, 225, 28);
 		add(lblMsg);
+		
+		lblNewLabel = new JLabel("Sign Up");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 38));
+		lblNewLabel.setBounds(528, 121, 189, 58);
+		add(lblNewLabel);
+		
+		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Morten\\Desktop\\background2.jpg"));
+		lblNewLabel_1.setBounds(0, 0, 1193, 900);
+		add(lblNewLabel_1);
+		
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				clear();

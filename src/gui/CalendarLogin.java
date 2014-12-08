@@ -23,6 +23,7 @@ import javax.swing.JPasswordField;
 
 import logic.Switch;
 import logic.User;
+import javax.swing.SwingConstants;
 
 public class CalendarLogin extends JPanel {
 	public static CalendarPanel calPal;
@@ -52,13 +53,13 @@ public class CalendarLogin extends JPanel {
 		userTextField.setColumns(10);
 
 		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setBounds(528, 363, 150, 16);
+		lblPassword.setBounds(528, 363, 150, 22);
 		panel.add(lblPassword);
 
 		CalBut butOk = new CalBut();
 		butOk.setBounds(528, 425, 150, 70);
 		panel.add(butOk);
-		butOk.setText("OK");
+		butOk.setText("Login");
 		butOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -74,12 +75,6 @@ public class CalendarLogin extends JPanel {
 		lblLogStatus.setBounds(528, 525, 150, 14);
 		panel.add(lblLogStatus);
 
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(CalendarLogin.class
-				.getResource("/gui/images/CBS logo.png")));
-		lblNewLabel.setBounds(327, -13, 646, 278);
-		panel.add(lblNewLabel);
-
 		JButton butnewUser = new JButton("New user?");
 		butnewUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -89,6 +84,16 @@ public class CalendarLogin extends JPanel {
 		});
 		butnewUser.setBounds(528, 550, 150, 23);
 		panel.add(butnewUser);
+		
+		JLabel lblWelcome = new JLabel("Welcome!");
+		lblWelcome.setFont(new Font("Tahoma", Font.BOLD, 38));
+		lblWelcome.setBounds(510, 165, 217, 123);
+		panel.add(lblWelcome);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Morten\\Desktop\\background2.jpg"));
+		lblNewLabel_1.setBounds(0, 0, 1193, 900);
+		panel.add(lblNewLabel_1);
 
 	}
 
